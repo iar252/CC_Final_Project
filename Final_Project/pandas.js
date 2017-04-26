@@ -27,7 +27,6 @@ function homePanda(){
 	strokeWeight(2);
 	arc(222,477,30, 30, radians(345), radians(188),CHORD);
 	
-
 	fill(1, 122, 17);
 	stroke(226, 183, 11);
 	strokeWeight(3);
@@ -38,7 +37,7 @@ function homePanda(){
 }
 
 function Panda(){	
-	this.location = new createVector(positions[xrandom],random(200,400));
+	this.location = new createVector(random(400,1500),random(200,400));
 // for loop to check .x and .y for when the pandas are being drawn
 	this.display = function(){
 		image(pandaImg,this.location.x, this.location.y,pandaImg.width,pandaImg.height);
@@ -56,16 +55,39 @@ function Panda(){
 		strokeWeight(2);
 		arc(this.location.x+127,this.location.y+110,30, 30, radians(345), radians(188),CHORD);
 		noStroke();
-
 	}
-	
 }
+
+function Bamboo(){
+	this.location = new createVector(random(20,1700), random(200,700));
+	this.display = function(){
+
+	fill(99, 155, 38);
+	stroke(196, 156, 45);
+	strokeWeight(5);
+	for(var i=0; i < 300; i+=40){
+		rect(this.location.x+(i/10),this.location.y-11*i/5,30,80);
+		
+	}
+	noStroke();
+	// taking x, y, strokeWeight, length
+	// drawLeaves(this.location.x, this.location.y,50,6);
+}}
+
+
+
 function pandaScene(){
-	background(255);
+	background(bamboo_background);
+	for(var i = 0; i < arrayOfBamboos.length; i++){
+		arrayOfBamboos[i].display();
+	}
 	for (var i = 0; i < arrayOfPandas.length; i++){
 		arrayOfPandas[i].display();
 	}
 }
+
+
+
 /*
 
 going to create vectors, movement, display function, update function, will be interacting with the other tabs

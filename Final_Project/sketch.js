@@ -13,12 +13,19 @@ var showPenguinScene = false;
 var arrayOfPandas =[];
 var positions = [];
 var xrandom;
+var xvalue;
+var arrayOfBamboos =[];
+var bamboo_background;
+
+
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
 	// photoshopping took a long long time to get used to
 	rhinoImg = loadImage("media/rhino.png");
 	pandaImg = loadImage("media/panda.png");
 	penguinImg = loadImage("media/penguin.png");
+	bamboo_background = loadImage("media/bamboo_background.jpg");
+
 }
 function setup(){
 	createCanvas(1800,700);
@@ -33,12 +40,18 @@ function setup(){
 	// positions[9] = 1429;
 	// positions[10] = 1593;
 	// having an extremely difficult time with this, the pandas still are stacked vertically on eachother
+	xrandom = random(0,3);
+	xvalue = positions[xrandom];
 	// putting pandas in the array
-	
-	for(var i = 0; i < 4; i++){
-		xrandom = random(0,3);
+	for(var i = 0; i < 8; i++){
 		arrayOfPandas[i] = new Panda;
 	}
+
+
+	for(var i = 0;i < 50; i++){
+		arrayOfBamboos[i] = new Bamboo;
+	}
+
 }
 // purpose of this code: checks to see if the position was taken
 //because I don't want the pandas to overlap on each other when they're drawn
