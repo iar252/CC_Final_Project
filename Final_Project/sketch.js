@@ -7,26 +7,73 @@ var rhinoImg;
 var pandaImg;
 var penguinImg;
 var showHome = true;
-
+var showPandaScene = false;
+var showRhinoScene = false;
+var showPenguinScene = false;
+var arrayOfPandas =[];
+var positions = [];
+var xrandom;
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
 	// photoshopping took a long long time to get used to
-	rhinoImg = loadImage("img/rhino.png");
-	pandaImg = loadImage("img/panda.png");
-	penguinImg = loadImage("img/penguin.png");
+	rhinoImg = loadImage("media/rhino.png");
+	pandaImg = loadImage("media/panda.png");
+	penguinImg = loadImage("media/penguin.png");
 }
 function setup(){
 	createCanvas(1800,700);
+	positions[0] = 150;
+	positions[1] = 1320;
+	positions[2] = 1600;
+	positions[3] = 720;
+	// positions[4] = 840;
+	// positions[6] = 950;
+	// positions[7] = 1100;
+	// positions[8] = 1240;
+	// positions[9] = 1429;
+	// positions[10] = 1593;
+	// having an extremely difficult time with this, the pandas still are stacked vertically on eachother
+	// putting pandas in the array
 	
+	for(var i = 0; i < 4; i++){
+		xrandom = random(0,3);
+		arrayOfPandas[i] = new Panda;
+	}
 }
+// purpose of this code: checks to see if the position was taken
+//because I don't want the pandas to overlap on each other when they're drawn
+// on the panda scene. 
+// this code takes too long to work on the browser, 
+//i put in the elements in the array on my own
+// 	for(var i=0; i<30;i++){
+// 		var find = false;
+// 		var temp;
+// 		while(!find){
+// 			find = true; // should be true all the way to the end 
+// 			temp = random(130,500);
+// 			for (var x = 0; x<i; x++){
+// 				if(abs(temp - positions[x]) < 140){ 
+// 					find = false;
+// 					break;
+// 				}
+// 			}
+// 		}
+// 	positions[i] = temp; // finally can use this value because it passed all the tests
+// 	}
+
+
 
 function draw(){
 	if (showHome==true){
 		homeAnimals();
-
-		print("X: " + mouseX);
-		print("Y: " + mouseY);
 	}	
+
+	if (showPandaScene == true){
+		pandaScene();	
+	}
+
+	print("X: " + mouseX);
+	print("Y: " + mouseY);
 
 	// tested the code below and it worked!
 	// if(showHome==false){
@@ -39,28 +86,41 @@ function draw(){
 // use of bools because we dont want to pile on images and backgrounds, slows down the program
 // this way, there's more control
 function mousePressed(){
-	if(mouseY>40){
+	if(mouseY<40){
 		showHome=true;
+		showPenguinScene = false;
+		showRhinoScene = false;
+		showPandaScene = false;
 	}
 
-	if(mouseIsPressed && mouseX<535){
+	else if(mouseIsPressed && mouseX<535){
 		showHome=false;
+		showPandaScene = true;
+		showRhinoScene = false;
+		showPenguinScene = false;
 		// next line: calls function that takes us to the panda scene
 	}
 
-	if(mouseIsPressed && mouseX>535 && mouseX<1115){
+	else if(mouseIsPressed && mouseX>535 && mouseX<1115){
 		showHome = false;
+		showPandaScene = false;
+		showRhinoScene = false;
+		showPenguinScene = true;
 		// next line: calls function that takes us to the penguin scene
 	}
 
-	if(mouseIsPressed && mouseX>1115){
+	else if(mouseIsPressed && mouseX>1115){
 		showHome = false;
+		showPandaScene = false;
+		showRhinoScene = false;
+		showPenguinScene = true;
 		// next line: calls function that takes us to the penguin scene
+	}
+	else{
+		background(255,0,0);
 	}
 
 }
-
-
 
 // the functions 
 function homeAnimals(){
@@ -71,12 +131,9 @@ function homeAnimals(){
 	textSize(30);
      textFont("Helvetica");
      text("HOME",815, 28);
-
-
-
 	// these animals are only for the homepage, so no need for the objects of them being called for now
 //background for rhino
-		for(var i =0; i < 580; i++){
+	for(var i =0; i < 580; i++){
 		stroke(260,222-(2*i/5),4);
 		strokeWeight(12);
 		line(1163,44+i,1800,44+i);
@@ -124,45 +181,6 @@ function homeRhino(){
 
 }
 
-function homePanda(){
-	noStroke();
-	strokeWeight(1);
-	// grass
-	fill(93, 163, 79);
-	ellipse(230,625,600,230);
-	//log
-	fill(107, 69, 0);
-	quad(30,460,355,400,355,490,30,560);
-	ellipse(355,445,70,90);
-	fill(63, 41, 0);
-	ellipse(38,510,70,100);
-	image(pandaImg,-50,height-400, pandaImg.width, pandaImg.height);
-	// panda's eyes
-	fill(255);
-	ellipse(200,450,15,18);
-	ellipse(245,450,15,18);
-	fill(0);
-	ellipse(201,453,12,12);
-	ellipse(245,453,12,12);
-	fill(255);
-	ellipse(201,453,5,5);
-	ellipse(245,453,5,5);
-	// panda's mouth
-	fill(229, 130, 208);
-	stroke(0);
-	strokeWeight(2);
-	arc(222,477,30, 30, radians(345), radians(188),CHORD);
-	
-
-	fill(1, 122, 17);
-	stroke(226, 183, 11);
-	strokeWeight(3);
-	for(var i=0; i < 300; i+=40){
-		rect(70+(i/11),590-i,20,40);
-	}
-	noStroke();
-}
-
 function homePenguin(){
 	noStroke();
 	strokeWeight(1);
@@ -194,5 +212,5 @@ function homePenguin(){
 	ellipse(893,503,10,5);
 	ellipse(856,513,5,5);
 	ellipse(883,504,5,5);
-
 }
+
