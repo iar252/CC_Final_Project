@@ -1,22 +1,26 @@
-// METTING WITH KELLY ON APRIL 25 !
+// METTING WITH KELLY ON APRIL 28 !
 // where all the main things go, the other tabs hold the smaller parts of the code dedicated to its reason
-// the classes of each animal will be created in their respective tabs
+// the classes of each animal are created in their respective tabs
 // that way i can better organize their movements and vectors and other properties
 // sound will be added to all pages
 var rhinoImg;
 var pandaImg;
 var penguinImg;
+var bamboo_background;
 var showHome = true;
 var showPandaScene = false;
 var showRhinoScene = false;
 var showPenguinScene = false;
 var arrayOfPandas =[];
+var arrayOfBamboos =[];
+var arrayOfRhinos = [];
+var arrayOfPenguins = [];
 var positions = [];
 var xrandom;
 var xvalue;
-var arrayOfBamboos =[];
-var bamboo_background;
 
+var testPenguin;
+var testRhino;
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -39,7 +43,7 @@ function setup(){
 	// positions[8] = 1240;
 	// positions[9] = 1429;
 	// positions[10] = 1593;
-	// having an extremely difficult time with this, the pandas still are stacked vertically on eachother
+	// having an extremely difficult time with this, the animals are still stacked vertically on eachother
 	xrandom = random(0,3);
 	xvalue = positions[xrandom];
 	// putting pandas in the array
@@ -50,6 +54,16 @@ function setup(){
 
 	for(var i = 0;i < 50; i++){
 		arrayOfBamboos[i] = new Bamboo;
+	}
+	// console.log("working");
+	// testRhino = new Rhino;
+
+	for(var i = 0; i < 3; i++){
+		arrayOfRhinos[i] = new Rhino;
+	}
+
+	for (var i = 0; i < 14; i ++){
+		arrayOfPenguins[i] = new Penguin;
 	}
 
 }
@@ -85,6 +99,15 @@ function draw(){
 		pandaScene();	
 	}
 
+	if (showRhinoScene == true){
+		rhinoScene();
+	}
+
+	if (showPenguinScene == true){
+		penguinScene();
+	}
+
+
 	print("X: " + mouseX);
 	print("Y: " + mouseY);
 
@@ -94,8 +117,7 @@ function draw(){
 	// }
 }
 
-// struggled with this for a while until I realized that the 'k' is supposed to be capitalized
-// attempt at implementing the state machine, discussed in office hours 
+// state machine working well :D
 // use of bools because we dont want to pile on images and backgrounds, slows down the program
 // this way, there's more control
 function mousePressed(){
@@ -111,7 +133,6 @@ function mousePressed(){
 		showPandaScene = true;
 		showRhinoScene = false;
 		showPenguinScene = false;
-		// next line: calls function that takes us to the panda scene
 	}
 
 	else if(mouseIsPressed && mouseX>535 && mouseX<1115){
@@ -119,18 +140,16 @@ function mousePressed(){
 		showPandaScene = false;
 		showRhinoScene = false;
 		showPenguinScene = true;
-		// next line: calls function that takes us to the penguin scene
 	}
 
-	else if(mouseIsPressed && mouseX>1115){
+	else if(mouseIsPressed && mouseX>1150 && mouseX < 1700){
 		showHome = false;
 		showPandaScene = false;
-		showRhinoScene = false;
-		showPenguinScene = true;
-		// next line: calls function that takes us to the penguin scene
+		showRhinoScene = true;
+		showPenguinScene = false;
 	}
 	else{
-		background(255,0,0);
+		background(155,0,110);
 	}
 
 }
@@ -151,7 +170,6 @@ function homeAnimals(){
 		strokeWeight(12);
 		line(1163,44+i,1800,44+i);
 	}
-
 		homeRhino();
 
 
@@ -163,7 +181,6 @@ function homeAnimals(){
 		line(0,44+i,524,44+i);
 	}
 	homePanda();
-
 
 	//background for penguin
 	for(var i =0; i < 580; i++){
@@ -178,52 +195,5 @@ function homeAnimals(){
 // 	background(255);
 // }
 
-function homeRhino(){
-	noStroke();
-	fill(214, 187, 109);
-	ellipse(1480,633,650,230);
 
-    // image(the picture, x,y,size,size)
-	image(rhinoImg,width/2+200,height-450, 6*rhinoImg.width/5, 6*rhinoImg.height/5);
-
-	fill(255);
-	ellipse(1245,425,25,20);
-	fill(0);
-	ellipse(1242,428,15,15);
-	arc(1228, 488, 80, 80, radians(80), radians(115))
-
-}
-
-function homePenguin(){
-	noStroke();
-	strokeWeight(1);
-	//block of ice
-	fill(201, 239, 235);
-	ellipse(840,620,550,230);
-
-	fill(77, 173, 221);
-	stroke(126, 184, 214);
-	for (var i = 0; i < 400; i+=90){
-		triangle(667+i,545,728+i,400,764+i,535);
-		triangle(600+i,555, 685+i,321,744+i,545);
-	}
-
-	strokeWeight(6);
-	for(var i = 0; i < 470; i+=70){
-		rect(620+i,545,60,30);
-	}
-	noStroke();
-	image(penguinImg,width/2-360,height-430, 6*penguinImg.width/5, 6*penguinImg.height/5);
-	// penguins eyes
-	fill(0);
-	ellipse(850,510,28,28);
-	ellipse(888,498,28,28);
-	fill(255);
-	ellipse(847,506,12,12);
-	ellipse(887,493,12,12);
-	ellipse(847,517,10,5);
-	ellipse(893,503,10,5);
-	ellipse(856,513,5,5);
-	ellipse(883,504,5,5);
-}
 

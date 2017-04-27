@@ -1,3 +1,25 @@
+function Panda(){	
+	this.location = new createVector(random(200,1500),random(200,400));
+// for loop to check .x and .y for when the pandas are being drawn
+	this.display = function(){
+		image(pandaImg,this.location.x, this.location.y,pandaImg.width,pandaImg.height);
+		fill(255);
+		ellipse(this.location.x+106, this.location.y+80, 15,18);
+		ellipse(this.location.x+151,this.location.y+80,15,18);
+		fill(0);
+		ellipse(this.location.x+106,this.location.y+83,12,12);
+		ellipse(this.location.x+151,this.location.y+83,12,12); 
+		fill(255);
+		ellipse(this.location.x+106,this.location.y+83,5,5);
+		ellipse(this.location.x+151,this.location.y+83,5,5);
+		fill(229, 130, 208);
+		stroke(0);
+		strokeWeight(2);
+		arc(this.location.x+127,this.location.y+110,30, 30, radians(345), radians(188),CHORD);
+		noStroke();
+	}
+}
+
 function homePanda(){
 	noStroke();
 	strokeWeight(1);
@@ -36,28 +58,6 @@ function homePanda(){
 	noStroke();
 }
 
-function Panda(){	
-	this.location = new createVector(random(400,1500),random(200,400));
-// for loop to check .x and .y for when the pandas are being drawn
-	this.display = function(){
-		image(pandaImg,this.location.x, this.location.y,pandaImg.width,pandaImg.height);
-		fill(255);
-		ellipse(this.location.x+106, this.location.y+80, 15,18);
-		ellipse(this.location.x+151,this.location.y+80,15,18);
-		fill(0);
-		ellipse(this.location.x+106,this.location.y+83,12,12);
-		ellipse(this.location.x+151,this.location.y+83,12,12); 
-		fill(255);
-		ellipse(this.location.x+106,this.location.y+83,5,5);
-		ellipse(this.location.x+151,this.location.y+83,5,5);
-		fill(229, 130, 208);
-		stroke(0);
-		strokeWeight(2);
-		arc(this.location.x+127,this.location.y+110,30, 30, radians(345), radians(188),CHORD);
-		noStroke();
-	}
-}
-
 function Bamboo(){
 	this.location = new createVector(random(20,1700), random(200,700));
 	this.display = function(){
@@ -65,6 +65,7 @@ function Bamboo(){
 	fill(99, 155, 38);
 	stroke(196, 156, 45);
 	strokeWeight(5);
+	// the bamboo on the panda scene
 	for(var i=0; i < 300; i+=40){
 		rect(this.location.x+(i/10),this.location.y-11*i/5,30,80);
 		
@@ -74,8 +75,6 @@ function Bamboo(){
 	// drawLeaves(this.location.x, this.location.y,50,6);
 }}
 
-
-
 function pandaScene(){
 	background(bamboo_background);
 	for(var i = 0; i < arrayOfBamboos.length; i++){
@@ -84,6 +83,12 @@ function pandaScene(){
 	for (var i = 0; i < arrayOfPandas.length; i++){
 		arrayOfPandas[i].display();
 	}
+	fill(242, 99, 166);
+	rect(0,0,width,38);
+	fill(255);
+	textSize(30);
+     textFont("Helvetica");
+     text("HOME",815, 28);
 }
 
 
@@ -93,9 +98,10 @@ function pandaScene(){
 going to create vectors, movement, display function, update function, will be interacting with the other tabs
 
 plan: 
-well designed/drawn bamboo sticks are going to crowd the array of pandas, but using time, im going to
+using time, im going to
 make the bamboo sticks disappear. 
 after a certain amount of bamboos are gone, the panda's smile begins to disappear and the eyes close
+use function to splice
 
 */
 
