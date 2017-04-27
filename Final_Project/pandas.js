@@ -60,29 +60,48 @@ function homePanda(){
 
 function Bamboo(){
 	this.location = new createVector(random(20,1700), random(200,700));
+	this.lifespan = 10;
 	this.display = function(){
-
-	fill(99, 155, 38);
+	fill(99,155,38); 
 	stroke(196, 156, 45);
 	strokeWeight(5);
 	// the bamboo on the panda scene
 	for(var i=0; i < 300; i+=40){
 		rect(this.location.x+(i/10),this.location.y-11*i/5,30,80);
-		
 	}
 	noStroke();
 	// taking x, y, strokeWeight, length
 	// drawLeaves(this.location.x, this.location.y,50,6);
-}}
+	}
+	this.update = function(){
+		lifespan;
+	}
+
+	this.isFinished = function(){
+		if (this.lifespan<0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+}
 
 function pandaScene(){
 	background(bamboo_background);
-	for(var i = 0; i < arrayOfBamboos.length; i++){
+	for(var i = bubbles.legnth-1; i >=0; i--){
+		arrayOfBamboos[i].update();
 		arrayOfBamboos[i].display();
+		if(arrayOfBamboos[i].isFinished()){
+			arrayOfBamboos.splice(i,1);
+		}
 	}
 	for (var i = 0; i < arrayOfPandas.length; i++){
 		arrayOfPandas[i].display();
 	}
+
+	
+
 	fill(242, 99, 166);
 	rect(0,0,width,38);
 	fill(255);
@@ -91,6 +110,18 @@ function pandaScene(){
      text("HOME",815, 28);
 }
 
+
+
+/*
+Notes of splicing: 
+arr.splice(_,_);
+in the first slot you put which element you want to delete
+in the second slot you put how many elements after the first slot you want to delete
+in my case i just want to go to delete any random element so arr.splice(random(#of objects), 1); 
+
+
+
+*/
 
 
 /*

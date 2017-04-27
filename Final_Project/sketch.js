@@ -18,6 +18,7 @@ var arrayOfPenguins = [];
 var positions = [];
 var xrandom;
 var xvalue;
+var lifespan;
 
 var testPenguin;
 var testRhino;
@@ -33,6 +34,7 @@ function preload(){
 }
 function setup(){
 	createCanvas(1800,700);
+	lifespan = millis();
 	positions[0] = 150;
 	positions[1] = 1320;
 	positions[2] = 1600;
@@ -52,7 +54,7 @@ function setup(){
 	}
 
 
-	for(var i = 0;i < 50; i++){
+	for(var i = 0;i < 5; i++){
 		arrayOfBamboos[i] = new Bamboo;
 	}
 	// console.log("working");
