@@ -139,5 +139,18 @@ function penguinScene(){
 	textSize(30);
     textFont("Helvetica");
     text("HOME",815, 28);
+    gwNotHoax();
+    // gwHoax();
+}
+
+
+// pictures of trump
+// this will be used when the penguins are still there
+function gwHoax(){
+	image(trumpBefore, 0, 50,trumpBefore.width, trumpBefore.height);
+}
+// this will be used when the penguins are gone
+function gwNotHoax(){
+	image(trumpAfter, 0,50,trumpAfter.width/2,trumpAfter.height/2);
 }
 

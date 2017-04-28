@@ -6,6 +6,8 @@
 var rhinoImg;
 var pandaImg;
 var penguinImg;
+var trumpBefore;
+var trumpAfter;
 var bamboo_background;
 var showHome = true;
 var showPandaScene = false;
@@ -30,6 +32,8 @@ function preload(){
 	pandaImg = loadImage("media/panda.png");
 	penguinImg = loadImage("media/penguin.png");
 	bamboo_background = loadImage("media/bamboo_background.jpg");
+	trumpBefore = loadImage("media/trumphoax.png");
+	trumpAfter = loadImage("media/trumpmistake.png");
 
 }
 function setup(){
