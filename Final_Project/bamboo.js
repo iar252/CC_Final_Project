@@ -2,8 +2,9 @@ function Bamboo(){
 	this.location = new createVector(random(20,1700), random(200,700));
 	this.lifespan = 1000;
 	this.born = millis(); // time this was born
-
-
+	this.velocity = createVector(10,0);
+	this.acceleration = createVector(random(.3,0),0);
+	this.highest = .8;
 	this.display = function(){
 		fill(99,155,38); 
 		stroke(196, 156, 45);
@@ -15,16 +16,6 @@ function Bamboo(){
 		noStroke();
 		// taking x, y, strokeWeight, length
 		// drawLeaves(this.location.x, this.location.y,50,6);
-	}
-
-	this.isFinished = function(){
-		//if (this.lifespan>0){
-		if(millis() - this.born > this.lifespan){
-			return true;
-		}
-		else{
-			return false;
-		}
 	}
 //}
 /*
@@ -38,5 +29,13 @@ function Bamboo(){
 		}
 
 		*/
+
+	this.update = function(){
+		this.velocity.add(this.acceleration); // adding acceleration to velocity 
+		this.location.add(this.velocity); // that velocity being added to location (trickle down!!)
+		this.velocity.limit(this.highest);
+		//console.log(this.location.x);
+		return this.location;
+	}
 
 }

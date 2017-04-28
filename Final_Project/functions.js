@@ -1,4 +1,5 @@
 // these are the functions that are called on the homepage 
+
 function homePanda(){
 	noStroke();
 	strokeWeight(1);
@@ -102,34 +103,63 @@ function rhinoScene(){
 
 
 function pandaScene(){
+	//this scene shows how when bamboos lose their homes due to deforestation, they begin to lose weight and then die 
 	background(bamboo_background);
 
-// are we too old? 
-	for(var i = arrayOfBamboos.legnth-1; i >=0; i--){
-		if(arrayOfBamboos[i].isFinished()){ // then take us out
-			arrayOfBamboos.splice(i,1);
+
+
+	//this counts how many bamboos are off the screen
+	var counter=0;
+	for(var i =0; i < arrayOfBamboos.length; i++){
+		if(arrayOfBamboos[i].location.x > 1800){
+			counter += 1;
 		}
 	}
-	///*
 
-	//display us!
+	// if there are more than 15 off the screen
+	if (counter >= 45){
+		pandaDeathBegin = true;
+	}
+	// if there are more than 10 but less than 15, then they're losing weight
+	if(counter > 15 && counter < 25){
+		for(var i = 0; i < arrayOfPandas.length; i++){
+			arrayOfPandas[i].isSurprised = true;
+			
+		}
+	}
+	// if there are more 5 but less than 10, then theyre surprised
+	if(counter > 25 && counter < 40){
+		for(var i = 0; i < arrayOfPandas.length; i++){
+			arrayOfPandas[i].isLosingWeight = true;
+		}
+
+	}
+
+	//where everything related to pandas and bamboos are updated and displayed
 	for( var i = 0; i < arrayOfBamboos.length; i++){
-		//bambooDisappear();
+		var loc = createVector(0, 0);
+	    loc = arrayOfBamboos[i].update();
 		arrayOfBamboos[i].display();
 	}
-	//*/
 
-
-	for (var i = 0; i < arrayOfPandas.length; i++){
+	// loops backwards because when spliced, the order is messed up
+	for(var i = arrayOfPandas.length-1; i > 0; i--){
+		if(pandaDeathBegin == true){
+			arrayOfPandas.splice(0, 1);
+			pandaDeathBegin = false;
+		}
+	}
+	for (var i = 0; i < arrayOfPandas.length-1; i++){
 		arrayOfPandas[i].display();
+		arrayOfPandas[i].mouth();
 	}
 
 	fill(242, 99, 166);
 	rect(0,0,width,38);
 	fill(255);
 	textSize(30);
-     textFont("Helvetica");
-     text("HOME",815, 28);
+    textFont("Helvetica");
+    text("HOME",815, 28);
 }
 
 

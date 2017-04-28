@@ -6,6 +6,8 @@
 var rhinoImg;
 var pandaImg;
 var penguinImg;
+var trumpBefore;
+var trumpAfter;
 var bamboo_background;
 var showHome = true;
 var showPandaScene = false;
@@ -16,12 +18,11 @@ var arrayOfBamboos =[];
 var arrayOfRhinos = [];
 var arrayOfPenguins = [];
 var positions = [];
-var xrandom;
+// var xrandom;
 var xvalue;
 var lifespan;
-
-// var testPenguin;
-// var testRhino;
+var arrayOfX = [];
+var pandaDeathBegin = false;
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -30,33 +31,29 @@ function preload(){
 	pandaImg = loadImage("media/panda.png");
 	penguinImg = loadImage("media/penguin.png");
 	bamboo_background = loadImage("media/bamboo_background.jpg");
-
+	trumpBefore = loadImage("media/trumphoax.png");
+	trumpAfter = loadImage("media/trumpmistake.png");
 }
 function setup(){
 	createCanvas(1800,700);
 	//lifespan = millis();
-	positions[0] = 150;
-	positions[1] = 1320;
-	positions[2] = 1600;
-	positions[3] = 720;
-	// positions[4] = 840;
-	// positions[6] = 950;
-	// positions[7] = 1100;
-	// positions[8] = 1240;
-	// positions[9] = 1429;
-	// positions[10] = 1593;
-	// having an extremely difficult time with this, the animals are still stacked vertically on eachother
-	xrandom = random(0,3);
-	xvalue = positions[xrandom];
+
+
+	positions = [140,390,500,640,730,854,931,1089,1152,1298,1360,1492,1593,1730];
+
+
+
 	// putting pandas in the array
 	for(var i = 0; i < 8; i++){
 		arrayOfPandas[i] = new Panda;
 	}
 
 
-	for(var i = 0; i < 5; i++){
+	for(var i = 0; i < 50; i++){
 		arrayOfBamboos[i] = new Bamboo;
 	}
+
+
 	// console.log("working");
 	// testRhino = new Rhino;
 
@@ -74,6 +71,7 @@ function setup(){
 // on the panda scene. 
 // this code takes too long to work on the browser, 
 //i put in the elements in the array on my own
+
 // 	for(var i=0; i<30;i++){
 // 		var find = false;
 // 		var temp;
@@ -98,6 +96,7 @@ function draw(){
 	}	
 
 	if (showPandaScene == true){
+
 		pandaScene();	
 	}
 
@@ -109,9 +108,6 @@ function draw(){
 		penguinScene();
 	}
 
-
-	print("X: " + mouseX);
-	print("Y: " + mouseY);
 
 
 /*
@@ -133,6 +129,8 @@ function draw(){
 	// 	white();
 	// }
 }
+
+
 
 // state machine working well :D
 // use of bools because we dont want to pile on images and backgrounds, slows down the program

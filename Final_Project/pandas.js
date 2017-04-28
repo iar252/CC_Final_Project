@@ -1,7 +1,11 @@
 function Panda(){	
+	this.isSurprised = false;
+	this.isLosingWeight = false;
 	this.location = new createVector(random(200,1500),random(200,400));
+	
 // for loop to check .x and .y for when the pandas are being drawn
 	this.display = function(){
+		if(this.isLosingWeight==false){
 		image(pandaImg,this.location.x, this.location.y,pandaImg.width,pandaImg.height);
 		fill(255);
 		ellipse(this.location.x+106, this.location.y+80, 15,18);
@@ -12,12 +16,30 @@ function Panda(){
 		fill(255);
 		ellipse(this.location.x+106,this.location.y+83,5,5);
 		ellipse(this.location.x+151,this.location.y+83,5,5);
+		}
+		else{
+		image(pandaImg,this.location.x, this.location.y,pandaImg.width-50,pandaImg.height);
+		}
+
+
+	}
+	this.mouth = function(){
 		fill(229, 130, 208);
 		stroke(0);
 		strokeWeight(2);
+		if (this.isSurprised==false){
 		arc(this.location.x+127,this.location.y+110,30, 30, radians(345), radians(188),CHORD);
+	}
+		else if(this.isSurprised==true && this.isLosingWeight==true) {
+			ellipse(this.location.x+104,this.location.y+110, 7,7);
+		}
+
+		else{
+			ellipse(this.location.x+127,this.location.y+110, 20,20);
+		}
 		noStroke();
 	}
+
 }
 
 
