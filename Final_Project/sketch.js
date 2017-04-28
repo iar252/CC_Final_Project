@@ -20,8 +20,8 @@ var xrandom;
 var xvalue;
 var lifespan;
 
-var testPenguin;
-var testRhino;
+// var testPenguin;
+// var testRhino;
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -34,7 +34,7 @@ function preload(){
 }
 function setup(){
 	createCanvas(1800,700);
-	lifespan = millis();
+	//lifespan = millis();
 	positions[0] = 150;
 	positions[1] = 1320;
 	positions[2] = 1600;
@@ -54,7 +54,7 @@ function setup(){
 	}
 
 
-	for(var i = 0;i < 5; i++){
+	for(var i = 0; i < 5; i++){
 		arrayOfBamboos[i] = new Bamboo;
 	}
 	// console.log("working");
@@ -112,6 +112,21 @@ function draw(){
 
 	print("X: " + mouseX);
 	print("Y: " + mouseY);
+
+
+/*
+	// now display your bamboo
+	for(var i = 0; i < arrayOfBamboos.legnth -1; i++){
+		arrayOfBamboos[i].display();
+	}
+*/
+
+/*
+	var currentTime = millis();
+	if(currentTime - lifespan > 10000){
+		// then slice from your array
+	}
+	*/
 
 	// tested the code below and it worked!
 	// if(showHome==false){
@@ -172,8 +187,7 @@ function homeAnimals(){
 		strokeWeight(12);
 		line(1163,44+i,1800,44+i);
 	}
-		homeRhino();
-
+	homeRhino();
 
 	//background for panda
 	(227, 228, 229)

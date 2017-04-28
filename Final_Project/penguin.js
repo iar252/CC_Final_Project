@@ -23,38 +23,6 @@ function Penguin(){
 
 }
 
-function homePenguin(){
-	noStroke();
-	strokeWeight(1);
-	//block of ice
-	fill(201, 239, 235);
-	ellipse(840,620,550,230);
-
-	fill(77, 173, 221);
-	stroke(126, 184, 214);
-	for (var i = 0; i < 400; i+=90){
-		triangle(667+i,545,728+i,400,764+i,535);
-		triangle(600+i,555, 685+i,321,744+i,545);
-	}
-
-	strokeWeight(6);
-	for(var i = 0; i < 470; i+=70){
-		rect(620+i,545,60,30);
-	}
-	noStroke();
-	image(penguinImg,width/2-136,height-253, 6*penguinImg.width/5, 6*penguinImg.height/5);
-	// penguins eyes
-	fill(0);
-	ellipse(850,510,28,28);
-	ellipse(888,498,28,28);
-	fill(255);
-	ellipse(847,506,12,12);
-	ellipse(887,493,12,12);
-	ellipse(847,517,10,5);
-	ellipse(893,503,10,5);
-	ellipse(856,513,5,5);
-	ellipse(883,504,5,5);
-}
 
 function penguinScene(){
 	background(255);
