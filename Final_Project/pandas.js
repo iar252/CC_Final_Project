@@ -20,42 +20,6 @@ function Panda(){
 	}
 }
 
-function pandaScene(){
-	background(bamboo_background);
-
-// are we too old? 
-	for(var i = arrayOfBamboos.legnth-1; i >=0; i--){
-		if(arrayOfBamboos[i].isFinished()){ // then take us out
-			arrayOfBamboos.splice(i,1);
-		}
-	}
-	///*
-
-	//display us!
-	for( var i = 0; i < arrayOfBamboos.length; i++){
-		//bambooDisappear();
-		arrayOfBamboos[i].display();
-	}
-	//*/
-
-
-	for (var i = 0; i < arrayOfPandas.length; i++){
-		arrayOfPandas[i].display();
-	}
-
-	fill(242, 99, 166);
-	rect(0,0,width,38);
-	fill(255);
-	textSize(30);
-     textFont("Helvetica");
-     text("HOME",815, 28);
-}
-
-	
-
-		
-
-
 
 
 	

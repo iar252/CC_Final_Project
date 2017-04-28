@@ -17,16 +17,3 @@ function Rhino(){
 
 }
 }
-
-function rhinoScene(){
-	background(255);
-	for(var i = 0; i < arrayOfRhinos.length; i++){
-		arrayOfRhinos[i].display();
-	}
-	fill(242, 99, 166);
-	rect(0,0,width,38);
-	fill(255);
-	textSize(30);
-     textFont("Helvetica");
-     text("HOME",815, 28);
-}
