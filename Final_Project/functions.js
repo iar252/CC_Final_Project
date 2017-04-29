@@ -93,6 +93,10 @@ function rhinoScene(){
 	for(var i = 0; i < arrayOfRhinos.length; i++){
 		arrayOfRhinos[i].display();
 	}
+	//arrayOfRhinos[0].movement();
+	
+	image(poacher, 0, arrayOfRhinos[0].location.y-30, poacher.width-250, poacher.height-250);
+	
 	fill(242, 99, 166);
 	rect(0,0,width,38);
 	fill(255);
@@ -106,8 +110,44 @@ function pandaScene(){
 	//this scene shows how when bamboos lose their homes due to deforestation, they begin to lose weight and then die 
 	background(bamboo_background);
 
+	//the function that holds all the conditions and controls for when things happen
+	pandaAndBambooConditions();
+
+	//where everything related to pandas and bamboos are updated and displayed
+	for( var i = 0; i < arrayOfBamboos.length; i++){
+		var loc = createVector(0, 0);
+	    loc = arrayOfBamboos[i].update();
+		arrayOfBamboos[i].display();
+	}
+	for (var i = 0; i < arrayOfPandas.length-1; i++){
+		arrayOfPandas[i].display();
+		arrayOfPandas[i].mouth();
+	}
+
+	// the banner that says home
+	fill(242, 99, 166);
+	rect(0,0,width,38);
+	fill(255);
+	textSize(30);
+    textFont("Helvetica");
+    text("HOME",815, 28);
+}
 
 
+function penguinScene(){
+	background(255);
+	for (var i = 0; i < arrayOfPenguins.length; i++){
+		arrayOfPenguins[i].display();
+	}
+	fill(242, 99, 166);
+	rect(0,0,width,38);
+	fill(255);
+	textSize(30);
+    textFont("Helvetica");
+    text("HOME",815, 28);
+}
+
+function pandaAndBambooConditions(){
 	//this counts how many bamboos are off the screen
 	var counter=0;
 	for(var i =0; i < arrayOfBamboos.length; i++){
@@ -134,45 +174,12 @@ function pandaScene(){
 		}
 
 	}
-
-	//where everything related to pandas and bamboos are updated and displayed
-	for( var i = 0; i < arrayOfBamboos.length; i++){
-		var loc = createVector(0, 0);
-	    loc = arrayOfBamboos[i].update();
-		arrayOfBamboos[i].display();
-	}
-
-	// loops backwards because when spliced, the order is messed up
+		// loops backwards because when spliced, the order is messed up
 	for(var i = arrayOfPandas.length-1; i > 0; i--){
 		if(pandaDeathBegin == true){
 			arrayOfPandas.splice(0, 1);
 			pandaDeathBegin = false;
 		}
 	}
-	for (var i = 0; i < arrayOfPandas.length-1; i++){
-		arrayOfPandas[i].display();
-		arrayOfPandas[i].mouth();
-	}
-
-	fill(242, 99, 166);
-	rect(0,0,width,38);
-	fill(255);
-	textSize(30);
-    textFont("Helvetica");
-    text("HOME",815, 28);
-}
-
-
-function penguinScene(){
-	background(255);
-	for (var i = 0; i < arrayOfPenguins.length; i++){
-		arrayOfPenguins[i].display();
-	}
-	fill(242, 99, 166);
-	rect(0,0,width,38);
-	fill(255);
-	textSize(30);
-    textFont("Helvetica");
-    text("HOME",815, 28);
 }
 

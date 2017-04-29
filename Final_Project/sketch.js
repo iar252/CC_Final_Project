@@ -8,6 +8,7 @@ var pandaImg;
 var penguinImg;
 var trumpBefore;
 var trumpAfter;
+var poacher;
 var bamboo_background;
 var showHome = true;
 var showPandaScene = false;
@@ -19,10 +20,12 @@ var arrayOfRhinos = [];
 var arrayOfPenguins = [];
 var positions = [];
 // var xrandom;
-var xvalue;
+// var xvalue;
 var lifespan;
 var arrayOfX = [];
 var pandaDeathBegin = false;
+var xRhino = [];
+var xPanda = [];
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -33,34 +36,37 @@ function preload(){
 	bamboo_background = loadImage("media/bamboo_background.jpg");
 	trumpBefore = loadImage("media/trumphoax.png");
 	trumpAfter = loadImage("media/trumpmistake.png");
+
+	//i did not draw the poacher, only colored him in on photoshop since picture was black and white. 
+	//the artist is Radoslav Penkov 
+	poacher = loadImage("media/poacher.png");
 }
 function setup(){
 	createCanvas(1800,700);
+
+	//array for the x positions available for the rhinos
+	xRhino = [850,1100,1300,1500];
 	//lifespan = millis();
 
-
-	positions = [140,390,500,640,730,854,931,1089,1152,1298,1360,1492,1593,1730];
-
-
+	//array for the x positions available for the pandas
+	var xPanda = [15,265,396,524,694,825,959,1184,1384,1593];
 
 	// putting pandas in the array
-	for(var i = 0; i < 8; i++){
-		arrayOfPandas[i] = new Panda;
+	for(var i = 0; i < 11; i++){
+		arrayOfPandas[i] = new Panda(xPanda[i]);
 	}
 
-
+	// putting bamboos in the array
 	for(var i = 0; i < 50; i++){
 		arrayOfBamboos[i] = new Bamboo;
 	}
 
-
-	// console.log("working");
-	// testRhino = new Rhino;
-
-	for(var i = 0; i < 3; i++){
-		arrayOfRhinos[i] = new Rhino;
+	// putting rhinos in the array
+	for(var i = 0; i < 4; i++){
+		arrayOfRhinos[i] = new Rhino(xRhino[i]);
 	}
 
+	// putting penguins in the array
 	for (var i = 0; i < 14; i ++){
 		arrayOfPenguins[i] = new Penguin;
 	}
@@ -91,12 +97,13 @@ function setup(){
 
 
 function draw(){
+	print ("this is mouseX " + mouseX);
+	print("this is mouseY " + mouseY);
 	if (showHome==true){
 		homeAnimals();
 	}	
 
 	if (showPandaScene == true){
-
 		pandaScene();	
 	}
 

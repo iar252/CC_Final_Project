@@ -1,7 +1,7 @@
-function Panda(){	
+function Panda(xPosPanda){	
 	this.isSurprised = false;
 	this.isLosingWeight = false;
-	this.location = new createVector(random(200,1500),random(200,400));
+	this.location = new createVector(xPosPanda,random(40,450));
 	
 // for loop to check .x and .y for when the pandas are being drawn
 	this.display = function(){
@@ -31,7 +31,7 @@ function Panda(){
 		arc(this.location.x+127,this.location.y+110,30, 30, radians(345), radians(188),CHORD);
 	}
 		else if(this.isSurprised==true && this.isLosingWeight==true) {
-			ellipse(this.location.x+104,this.location.y+110, 7,7);
+			ellipse(this.location.x+104,this.location.y+110, 4,4);
 		}
 
 		else{
