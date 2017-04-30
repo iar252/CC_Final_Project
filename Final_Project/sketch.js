@@ -27,6 +27,7 @@ var arrayOfX = [];
 var pandaDeathBegin = false;
 var xRhino = [];
 var xPanda = [];
+var rhino_background;
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -37,6 +38,7 @@ function preload(){
 	bamboo_background = loadImage("media/bamboo_background.jpg");
 	trumpBefore = loadImage("media/trumphoax.png");
 	trumpAfter = loadImage("media/trumpmistake.png");
+	rhino_background = loadImage("media/savannah_tree.png");
 
 	//i did not draw the poacher, only colored him in on photoshop since picture was black and white. 
 	//the artist is Radoslav Penkov 

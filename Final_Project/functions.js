@@ -89,24 +89,32 @@ function homePenguin(){
 
 // these are the functions that DISPLAY the animals by using the class method of that animal 
 function rhinoScene(){
-	background(255);
+	background(196, 159, 92);
+	//image of the tree in the background
+	image(rhino_background, 500,0,3*rhino_background.width/2, rhino_background.height);
+
+	// goes through the for loop and updates and displays the rhinos
 	for(var i = 0; i < arrayOfRhinos.length; i++){
+		arrayOfRhinos[i].update();
 		arrayOfRhinos[i].display();
 
 	}
-	
+
+	// the first rhino that was created is the one that moves away from the herd
 	arrayOfRhinos[0].movement();
 
-	// var flag;
-	// for(var i = 0; i < 2; i++){
-	// 	if()
-	// }
-
+	// when the rhino moves a certain distance away from the herd, the poacher appears
 	if (arrayOfRhinos[0].location.x < 300){
 		for(var i = 0; i < arrayOfPoachers.length; i++){
 		arrayOfPoachers[i].display();
+		arrayOfPoachers[i].poacherShoots = true;
+		arrayOfRhinos[i].rhinoCaught = true;
 		}	
 	}
+
+
+
+
 	
 	// // my code
 	// for(var i = 0; i < arrayOfPoachers.length; i++){
