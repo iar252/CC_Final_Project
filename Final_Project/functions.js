@@ -92,11 +92,27 @@ function rhinoScene(){
 	background(255);
 	for(var i = 0; i < arrayOfRhinos.length; i++){
 		arrayOfRhinos[i].display();
+
 	}
-	//arrayOfRhinos[0].movement();
 	
-	image(poacher, 0, arrayOfRhinos[0].location.y-30, poacher.width-250, poacher.height-250);
+	arrayOfRhinos[0].movement();
+
+	// var flag;
+	// for(var i = 0; i < 2; i++){
+	// 	if()
+	// }
+
+	if (arrayOfRhinos[0].location.x < 300){
+		for(var i = 0; i < arrayOfPoachers.length; i++){
+		arrayOfPoachers[i].display();
+		}	
+	}
 	
+	// // my code
+	// for(var i = 0; i < arrayOfPoachers.length; i++){
+		
+	// }
+
 	fill(242, 99, 166);
 	rect(0,0,width,38);
 	fill(255);
@@ -115,8 +131,7 @@ function pandaScene(){
 
 	//where everything related to pandas and bamboos are updated and displayed
 	for( var i = 0; i < arrayOfBamboos.length; i++){
-		var loc = createVector(0, 0);
-	    loc = arrayOfBamboos[i].update();
+	    arrayOfBamboos[i].update();
 		arrayOfBamboos[i].display();
 	}
 	for (var i = 0; i < arrayOfPandas.length-1; i++){

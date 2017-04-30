@@ -18,6 +18,7 @@ var arrayOfPandas =[];
 var arrayOfBamboos =[];
 var arrayOfRhinos = [];
 var arrayOfPenguins = [];
+var arrayOfPoachers = [];
 var positions = [];
 // var xrandom;
 // var xvalue;
@@ -49,7 +50,7 @@ function setup(){
 	//lifespan = millis();
 
 	//array for the x positions available for the pandas
-	var xPanda = [15,265,396,524,694,825,959,1184,1384,1593];
+	xPanda = [15,265,396,524,694,825,959,1184,1384,1593];
 
 	// putting pandas in the array
 	for(var i = 0; i < 11; i++){
@@ -70,6 +71,11 @@ function setup(){
 	for (var i = 0; i < 14; i ++){
 		arrayOfPenguins[i] = new Penguin;
 	}
+
+	for(var i = 0; i < 1; i++){
+		arrayOfPoachers[i] = new Poacher;
+	}
+
 
 }
 // purpose of this code: checks to see if the position was taken
