@@ -28,6 +28,11 @@ var pandaDeathBegin = false;
 var xRhino = [];
 var xPanda = [];
 var rhino_background;
+var igloo;
+var xPenguin = [];
+var xPoacher = [];
+var time;
+var rhinosAllDie =false;
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -39,6 +44,7 @@ function preload(){
 	trumpBefore = loadImage("media/trumphoax.png");
 	trumpAfter = loadImage("media/trumpmistake.png");
 	rhino_background = loadImage("media/savannah_tree.png");
+	igloo = loadImage("media/igloo.png");
 
 	//i did not draw the poacher, only colored him in on photoshop since picture was black and white. 
 	//the artist is Radoslav Penkov 
@@ -48,11 +54,17 @@ function setup(){
 	createCanvas(1800,700);
 
 	//array for the x positions available for the rhinos
-	xRhino = [850,1100,1300,1500];
+	xRhino = [850,1100,1300];
 	//lifespan = millis();
 
 	//array for the x positions available for the pandas
 	xPanda = [15,265,396,524,694,825,959,1184,1384,1593];
+
+	//array for the x positions available for the penguins 
+	xPenguin = [15,145,235,405,604,722,850,924,1045,1305,1583,1759];
+
+	//array for the x positions available for the poachers
+	xPoacher = [-40, -90,-130];
 
 	// putting pandas in the array
 	for(var i = 0; i < 11; i++){
@@ -65,17 +77,17 @@ function setup(){
 	}
 
 	// putting rhinos in the array
-	for(var i = 0; i < 4; i++){
+	for(var i = 0; i < 3; i++){
 		arrayOfRhinos[i] = new Rhino(xRhino[i]);
 	}
 
 	// putting penguins in the array
-	for (var i = 0; i < 14; i ++){
-		arrayOfPenguins[i] = new Penguin;
+	for (var i = 0; i < 12; i ++){
+		arrayOfPenguins[i] = new Penguin(xPenguin[i]);
 	}
 
-	for(var i = 0; i < 1; i++){
-		arrayOfPoachers[i] = new Poacher;
+	for(var i = 0; i < 3; i++){
+		arrayOfPoachers[i] = new Poacher(xPoacher[i]);
 	}
 
 
