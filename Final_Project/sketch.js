@@ -35,6 +35,7 @@ var time;
 var rhinosAllDie =false;
 var ozoneLayerx = 20;
 var ozoneLayery = 20;
+var penguinsBeginDeath = false;
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -63,7 +64,7 @@ function setup(){
 	xPanda = [15,265,396,524,694,825,959,1184,1384,1593];
 
 	//array for the x positions available for the penguins 
-	xPenguin = [15,145,235,405,604,722,850,924,1045,1305,1583,1759];
+	xPenguin = [15,145,235,405,604,722,850,924,1045,1305,14021,1583,1710];
 
 	//array for the x positions available for the poachers
 	xPoacher = [-40, -90,-130];
@@ -84,7 +85,7 @@ function setup(){
 	}
 
 	// putting penguins in the array
-	for (var i = 0; i < 12; i ++){
+	for (var i = 0; i < 11; i ++){
 		arrayOfPenguins[i] = new Penguin(xPenguin[i]);
 	}
 

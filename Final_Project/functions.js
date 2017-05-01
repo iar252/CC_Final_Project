@@ -144,27 +144,55 @@ function penguinScene(){
 	background(141, 159, 188);
 	image(igloo, 1300,100,igloo.width, igloo.height);
 
-
 	// Ozone layer expanding
-	stroke(255,0,0);
+	stroke(0);
 	if(ozoneLayerx < 150 && ozoneLayery < 150){
-	ellipse(800,150,ozoneLayerx,ozoneLayery);
-	ozoneLayerx+=.1;
-	ozoneLayery+=.1;
+		fill(27, 13, 86);
+	ellipse(1100,100,ozoneLayerx,ozoneLayery);
+	ozoneLayerx+=.3;
+	ozoneLayery+=.3;
 }
-
 	if(ozoneLayerx >= 150 && ozoneLayery >= 150){
-		ellipse(800,150,150,150);
+		fill(27, 13, 86);
+		ellipse(1100,100,150,150);
 	}
 
 
 	showIgloo();
 	
+
+	// could NOT put the iceBlock() and display() in the same for loop because then some of the penguins would be 
+	// behind the iceblocks of penguins that had been made before
+	for (var i = 0; i < arrayOfPenguins.length; i++){
+		arrayOfPenguins[i].iceBlock();
+	}
 	for (var i = 0; i < arrayOfPenguins.length; i++){
 		arrayOfPenguins[i].display();
 	}
-
-	
+	if(ozoneLayerx < 140 && ozoneLayery < 140){
+		image(trumpBefore,610,50,trumpBefore.width,trumpBefore.height);
+		fill(242, 99, 166);
+		rect(770,80,210,68);
+		fill(255);
+		textSize(16);
+    	textFont("Helvetica");
+    	text("Global warming is a HOAX!",776, 95);
+    	textSize(14);
+    	text("I know it. You know it.", 815,115);
+    	text("Everybody knows it.",815,135);
+	}
+	else{
+		image(trumpAfter,610,50,trumpBefore.width,trumpBefore.height);
+	}
+	if(ozoneLayerx > 149 && ozoneLayery > 149){
+		penguinsBeginDeath = true;
+	}
+	for(var i = arrayOfPenguins.length-1; i > 0; i--){
+		if(penguinsBeginDeath==true){
+			arrayOfPenguins.splice(0,1);
+			penguinsBeginDeath=false;
+		}
+	}
 	fill(242, 99, 166);
 	rect(0,0,width,38);
 	fill(255);
