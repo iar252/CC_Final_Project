@@ -9,6 +9,7 @@ function Poacher(xPosPoacher){
 
 
 
+
 	this.xBullet = this.location.x+300;
 	this.yBullet = this.location.y+50; 
 
@@ -28,19 +29,22 @@ function Poacher(xPosPoacher){
 			this.yBullet -= .5;
 		}
 		
-		//focus on these next two blocks
 		if(this.xBullet > this.rhinoHead){
 			for(var i = 0; i < arrayOfRhinos.length; i++){
 				arrayOfRhinos[0].hitRhino = true;
 				this.rhinoDeath = true;
 		}
+		
 	}
-		if(rhinosAllDie==true){
-			for(var i = 0; i<arrayOfRhinos.length;i++){
-			arrayOfRhinos[i].hitRhino = true;
-			//this.rhinoDeath = true;
-		}
-	}
+
+
+
+	// 	if(rhinosAllDie==true){
+	// 		for(var i = 0; i<arrayOfRhinos.length;i++){
+	// 		arrayOfRhinos[i].hitRhino = true;
+			
+	// 	}
+	// }
 
 		// if(this.xBullet > 1600){
 		// 	for(var i = 1; i < arrayOfRhinos.length; i++){

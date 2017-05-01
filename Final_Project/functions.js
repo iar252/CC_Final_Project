@@ -145,6 +145,7 @@ function penguinScene(){
 	background(141, 159, 188);
 	image(igloo, 1300,100,igloo.width, igloo.height);
 
+
 	// Ozone layer expanding
 	stroke(0);
 	if(ozoneLayerx < 150 && ozoneLayery < 150){
@@ -189,6 +190,7 @@ function penguinScene(){
     textFont("Helvetica");
     text("HOME",815, 28);
 }
+
 
 
 
@@ -243,7 +245,12 @@ function rhinoAndPoacherConditions(){
 		arrayOfPoachers[0].rhinoHead = 460;
 		arrayOfPoachers[0].bullet();
 		arrayOfRhinos[0].rhinoCaught = true;
-		
+	}
+
+	// to make sure the sound only plays when the first rhino is hit
+	if(arrayOfPoachers[0].xBullet>370 && arrayOfPoachers[0].xBullet<400){
+		gunShot.setVolume(3);
+		gunShot.play();
 	}
 
 	//the poacher starts moving after the first rhino is killed
@@ -265,7 +272,9 @@ function rhinoAndPoacherConditions(){
 					//flips this boolean because its checking in the next round of bullets has hit them
 					rhinosAllDie = true;
 					fill(86, 1, 1);
-					 ellipse(1400,600,600,70);
+					ellipse(1400,600,600,70);
+					gunShot.setVolume(3);
+					gunShot.play();
 				}
 			}
 		}

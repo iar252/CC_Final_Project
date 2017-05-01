@@ -34,6 +34,7 @@ var ozoneLayerx = 20;
 var ozoneLayery = 20;
 var penguinsBeginDeath = false;
 var gunShot;
+var homeSounds;
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -46,8 +47,8 @@ function preload(){
 	trumpAfter = loadImage("media/trumpmistake.png");
 	rhino_background = loadImage("media/savannah_tree.png");
 	igloo = loadImage("media/igloo.png");
-	// gunShot = loadSound("media/gunShot.mp3");
-	
+	gunShot = loadSound("media/gunShot.mp3");
+	homeSounds = loadSound("media/backgroundSounds.mp3");
 
 	//i did not draw the poacher, only colored him in on photoshop since picture was black and white. 
 	//the artist is Radoslav Penkov 
@@ -55,9 +56,6 @@ function preload(){
 }
 function setup(){
 	createCanvas(1800,700);
-	// gunShot.setVolume(0.1);
-	// gunShot.play();
-
 	//array for the x positions available for the rhinos
 	xRhino = [850,1100,1300];
 	//lifespan = millis();
@@ -121,8 +119,6 @@ function draw(){
 	print ("this is mouseX " + mouseX);
 	print("this is mouseY " + mouseY);
 	if (showHome==true){
-
-
 		homeAnimals();
 	}	
 
@@ -136,7 +132,6 @@ function draw(){
 
 	if (showPenguinScene == true){
 		penguinScene();
-
 	}
 /*
 	var currentTime = millis();
@@ -154,6 +149,8 @@ function draw(){
 // use of bools because we dont want to pile on images and backgrounds, slows down the program
 // this way, there's more control
 function mousePressed(){
+	homeSounds.setVolume(5);
+	homeSounds.play();
 	if(mouseY<40){
 		showHome=true;
 		showPenguinScene = false;
@@ -184,7 +181,6 @@ function mousePressed(){
 	else{
 		background(155,0,110);
 	}
-
 }
 
 // the function that draws the images for the homepage only
