@@ -6,7 +6,7 @@ function Rhino(xPosRhino){
 	this.location = new createVector(xPosRhino,random(250,300));
 	this.velocity = createVector(10,0);
 	this.acceleration = createVector(random(-.3,0),0);
-	this.highest =2;
+	this.highest =.5;
 
 	this.update = function(){
 		if(this.location.x < 375){

@@ -24,7 +24,7 @@ function Poacher(xPosPoacher){
 			//console.log(this.xBullet);
 			fill(0);
 			ellipse(this.xBullet,this.yBullet,20,10);
-			this.xBullet += 5;
+			this.xBullet += 1;
 			this.yBullet -= .5;
 		}
 		

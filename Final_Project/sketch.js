@@ -33,6 +33,8 @@ var xPenguin = [];
 var xPoacher = [];
 var time;
 var rhinosAllDie =false;
+var ozoneLayerx = 20;
+var ozoneLayery = 20;
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -133,6 +135,7 @@ function draw(){
 
 	if (showPenguinScene == true){
 		penguinScene();
+
 	}
 
 

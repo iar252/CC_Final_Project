@@ -100,53 +100,9 @@ function rhinoScene(){
 		arrayOfRhinos[i].update();
 		arrayOfRhinos[i].display();
 
+	rhinoAndPoacherConditions();
 	}
 
-	// the first rhino that was created is the one that moves away from the herd
-	arrayOfRhinos[0].movement();
-
-	// when the rhino moves a certain distance away from the herd, the poachers appear
-	//once the poachers appears, they shoot the one thats away from the herd 
-	// the first rhino dies
-	if (arrayOfRhinos[0].location.x < 380){
-		arrayOfPoachers[0].display();
-		arrayOfPoachers[0].poacherShoots = true;
-		arrayOfPoachers[0].rhinoHead = 460;
-		arrayOfPoachers[0].bullet();
-		arrayOfRhinos[0].rhinoCaught = true;
-		
-	}
-
-	//the poacher starts moving after the first rhino is killed
-	if(arrayOfRhinos[0].hitRhino == true){
-		// arrayOfRhinos[0].rhinoCaught = false;
-		for(var i = 0; i < arrayOfPoachers.length;i++){
-			// now the poachers are moving and the other rhinos are scared
-			arrayOfPoachers[i].display();
-			arrayOfPoachers[i].update();
-			arrayOfPoachers[i].moving();
-			arrayOfRhinos[i].rhinoCaught = true;
-			// checks for which range theyll start shooting again
-			if (arrayOfPoachers[i].location.x >= 380) {
-				arrayOfPoachers[i].poacherShoots = true;
-				arrayOfPoachers[i].xBullet = arrayOfPoachers[i].location.x+500;
-				arrayOfPoachers[i].rhinoHead = 1200;
-				arrayOfPoachers[i].bullet();
-				if(arrayOfPoachers[1].xBullet>1200 && arrayOfPoachers[2].xBullet>1200){
-					//flips this boolean because its checking in the next round of bullets has hit them
-					rhinosAllDie = true;
-					fill(86, 1, 1);
-					 ellipse(1400,600,600,70);
-				}
-			}
-		}
-	}
-			if (rhinosAllDie==true){
-				for(var i = 1; i < arrayOfRhinos.length; i++){
-					// spliced the rhinos off the array instead of just not displaying them like the first rhino
-					arrayOfRhinos.splice(i,2);
-				}
-			}
 
 	fill(242, 99, 166);
 	rect(0,0,width,38);
@@ -187,12 +143,28 @@ function pandaScene(){
 function penguinScene(){
 	background(141, 159, 188);
 	image(igloo, 1300,100,igloo.width, igloo.height);
+
+
+	// Ozone layer expanding
+	stroke(255,0,0);
+	if(ozoneLayerx < 150 && ozoneLayery < 150){
+	ellipse(800,150,ozoneLayerx,ozoneLayery);
+	ozoneLayerx+=.1;
+	ozoneLayery+=.1;
+}
+
+	if(ozoneLayerx >= 150 && ozoneLayery >= 150){
+		ellipse(800,150,150,150);
+	}
+
+
+	showIgloo();
 	
 	for (var i = 0; i < arrayOfPenguins.length; i++){
 		arrayOfPenguins[i].display();
 	}
 
-	showIgloo();
+	
 	fill(242, 99, 166);
 	rect(0,0,width,38);
 	fill(255);
@@ -237,13 +209,66 @@ function pandaAndBambooConditions(){
 	}
 }
 
+function rhinoAndPoacherConditions(){
+		// the first rhino that was created is the one that moves away from the herd
+	arrayOfRhinos[0].movement();
+
+	// when the rhino moves a certain distance away from the herd, the poachers appear
+	//once the poachers appears, they shoot the one thats away from the herd 
+	// the first rhino dies
+	if (arrayOfRhinos[0].location.x < 380){
+		arrayOfPoachers[0].display();
+		arrayOfPoachers[0].poacherShoots = true;
+		arrayOfPoachers[0].rhinoHead = 460;
+		arrayOfPoachers[0].bullet();
+		arrayOfRhinos[0].rhinoCaught = true;
+		
+	}
+
+	//the poacher starts moving after the first rhino is killed
+	if(arrayOfRhinos[0].hitRhino == true){
+		// arrayOfRhinos[0].rhinoCaught = false;
+		for(var i = 0; i < arrayOfPoachers.length;i++){
+			// now the poachers are moving and the other rhinos are scared
+			arrayOfPoachers[i].display();
+			arrayOfPoachers[i].update();
+			arrayOfPoachers[i].moving();
+			arrayOfRhinos[i].rhinoCaught = true;
+			// checks for which range theyll start shooting again
+			if (arrayOfPoachers[i].location.x >= 380) {
+				arrayOfPoachers[i].poacherShoots = true;
+				arrayOfPoachers[i].xBullet = arrayOfPoachers[i].location.x+500;
+				arrayOfPoachers[i].rhinoHead = 1200;
+				arrayOfPoachers[i].bullet();
+				if(arrayOfPoachers[1].xBullet>1200 && arrayOfPoachers[2].xBullet>1200){
+					//flips this boolean because its checking in the next round of bullets has hit them
+					rhinosAllDie = true;
+					fill(86, 1, 1);
+					 ellipse(1400,600,600,70);
+				}
+			}
+		}
+	}
+			if (rhinosAllDie==true){
+				for(var i = 1; i < arrayOfRhinos.length; i++){
+					// spliced the rhinos off the array instead of just not displaying them like the first rhino
+					arrayOfRhinos.splice(i,2);
+				}
+			}
+}
+
 function showIgloo(){
 	print("trying");
-	for (var i=0; i < 300; i+=60){
+	for (var i=0; i < 360; i+=60){
+		stroke(0);
+		strokeWeight(3);
 		fill(255);
 		stroke(0);
-		rect(200+i,100,80,40);
-	}
+		rect(200+i,200,90,60);
+		rect(230+i,150,65,50);
+		rect(230+i,120,60,35);
+		arc(410, 120, 350, 150, radians(180), radians(0), CHORD);
+		}
 	noStroke();
 }
 
