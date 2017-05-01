@@ -20,8 +20,9 @@ function Bamboo(){
 		this.velocity.add(this.acceleration); // adding acceleration to velocity 
 		this.location.add(this.velocity); // that velocity being added to location (trickle down!!)
 		this.velocity.limit(this.highest);
-		//console.log(this.location.x);
 		return this.location;
 	}
 
 }
+
+

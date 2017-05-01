@@ -1,4 +1,3 @@
-// METTING WITH KELLY ON APRIL 28 !
 // where all the main things go, the other tabs hold the smaller parts of the code dedicated to its reason
 // the classes of each animal are created in their respective tabs
 // that way i can better organize their movements and vectors and other properties
@@ -20,8 +19,6 @@ var arrayOfRhinos = [];
 var arrayOfPenguins = [];
 var arrayOfPoachers = [];
 var positions = [];
-// var xrandom;
-// var xvalue;
 var lifespan;
 var arrayOfX = [];
 var pandaDeathBegin = false;
@@ -36,6 +33,7 @@ var rhinosAllDie =false;
 var ozoneLayerx = 20;
 var ozoneLayery = 20;
 var penguinsBeginDeath = false;
+var gunShot;
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -48,6 +46,8 @@ function preload(){
 	trumpAfter = loadImage("media/trumpmistake.png");
 	rhino_background = loadImage("media/savannah_tree.png");
 	igloo = loadImage("media/igloo.png");
+	// gunShot = loadSound("media/gunShot.mp3");
+	
 
 	//i did not draw the poacher, only colored him in on photoshop since picture was black and white. 
 	//the artist is Radoslav Penkov 
@@ -55,6 +55,8 @@ function preload(){
 }
 function setup(){
 	createCanvas(1800,700);
+	// gunShot.setVolume(0.1);
+	// gunShot.play();
 
 	//array for the x positions available for the rhinos
 	xRhino = [850,1100,1300];
@@ -92,14 +94,13 @@ function setup(){
 	for(var i = 0; i < 3; i++){
 		arrayOfPoachers[i] = new Poacher(xPoacher[i]);
 	}
-
-
 }
 // purpose of this code: checks to see if the position was taken
 //because I don't want the pandas to overlap on each other when they're drawn
 // on the panda scene. 
 // this code takes too long to work on the browser, 
-//i put in the elements in the array on my own
+//i put in the elements in the array on my own, and then passed in the x values when the 
+// objects are drawn
 
 // 	for(var i=0; i<30;i++){
 // 		var find = false;
@@ -116,13 +117,12 @@ function setup(){
 // 		}
 // 	positions[i] = temp; // finally can use this value because it passed all the tests
 // 	}
-
-
-
 function draw(){
 	print ("this is mouseX " + mouseX);
 	print("this is mouseY " + mouseY);
 	if (showHome==true){
+
+
 		homeAnimals();
 	}	
 
@@ -138,16 +138,6 @@ function draw(){
 		penguinScene();
 
 	}
-
-
-
-/*
-	// now display your bamboo
-	for(var i = 0; i < arrayOfBamboos.legnth -1; i++){
-		arrayOfBamboos[i].display();
-	}
-*/
-
 /*
 	var currentTime = millis();
 	if(currentTime - lifespan > 10000){
@@ -160,10 +150,7 @@ function draw(){
 	// 	white();
 	// }
 }
-
-
-
-// state machine working well :D
+// state machine working 
 // use of bools because we dont want to pile on images and backgrounds, slows down the program
 // this way, there's more control
 function mousePressed(){
@@ -200,7 +187,7 @@ function mousePressed(){
 
 }
 
-// the functions 
+// the function that draws the images for the homepage only
 function homeAnimals(){
 	background(255);
 	fill(242, 99, 166);
@@ -209,7 +196,7 @@ function homeAnimals(){
 	textSize(30);
      textFont("Helvetica");
      text("HOME",815, 28);
-	// these animals are only for the homepage, so no need for the objects of them being called for now
+
 //background for rhino
 	for(var i =0; i < 580; i++){
 		stroke(260,222-(2*i/5),4);
@@ -236,9 +223,7 @@ function homeAnimals(){
 	homePenguin();
 
 }
-// function white(){
-// 	background(255);
-// }
+
 
 
 

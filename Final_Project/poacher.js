@@ -2,7 +2,7 @@ function Poacher(xPosPoacher){
 	this.poacherShoots = false;
 	this.location = new createVector(xPosPoacher,arrayOfRhinos[0].location.y+80);
 	this.velocity = createVector(10,0);
-	this.acceleration = createVector(random(3,0),0);
+	this.acceleration = createVector(.01,0);
 	this.highest =2;
 	this.rhinoDeath = false;
 	this.rhinoHead = 460;

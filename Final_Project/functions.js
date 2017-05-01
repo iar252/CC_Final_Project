@@ -1,12 +1,11 @@
 // these are the functions that are called on the homepage 
-
 function homePanda(){
 	noStroke();
 	strokeWeight(1);
 	// grass
 	fill(93, 163, 79);
 	ellipse(230,625,600,230);
-	//log
+	//panda's log
 	fill(107, 69, 0);
 	quad(30,460,355,400,355,490,30,560);
 	ellipse(355,445,70,90);
@@ -28,7 +27,7 @@ function homePanda(){
 	stroke(0);
 	strokeWeight(2);
 	arc(222,477,30, 30, radians(345), radians(188),CHORD);
-	
+	// single bamboo
 	fill(1, 122, 17);
 	stroke(226, 183, 11);
 	strokeWeight(3);
@@ -59,18 +58,20 @@ function homePenguin(){
 	fill(201, 239, 235);
 	ellipse(840,620,550,230);
 
+	//ice in the background
 	fill(77, 173, 221);
 	stroke(126, 184, 214);
 	for (var i = 0; i < 400; i+=90){
 		triangle(667+i,545,728+i,400,764+i,535);
 		triangle(600+i,555, 685+i,321,744+i,545);
 	}
-
 	strokeWeight(6);
 	for(var i = 0; i < 470; i+=70){
 		rect(620+i,545,60,30);
 	}
 	noStroke();
+
+
 	image(penguinImg,width/2-136,height-253, 6*penguinImg.width/5, 6*penguinImg.height/5);
 	// penguins eyes
 	fill(0);
@@ -103,7 +104,7 @@ function rhinoScene(){
 	rhinoAndPoacherConditions();
 	}
 
-
+	// the banner that says home
 	fill(242, 99, 166);
 	rect(0,0,width,38);
 	fill(255);
@@ -130,7 +131,7 @@ function pandaScene(){
 		arrayOfPandas[i].mouth();
 	}
 
-	// the banner that says home
+	
 	fill(242, 99, 166);
 	rect(0,0,width,38);
 	fill(255);
@@ -157,7 +158,6 @@ function penguinScene(){
 		ellipse(1100,100,150,150);
 	}
 
-
 	showIgloo();
 	
 
@@ -169,21 +169,9 @@ function penguinScene(){
 	for (var i = 0; i < arrayOfPenguins.length; i++){
 		arrayOfPenguins[i].display();
 	}
-	if(ozoneLayerx < 140 && ozoneLayery < 140){
-		image(trumpBefore,610,50,trumpBefore.width,trumpBefore.height);
-		fill(242, 99, 166);
-		rect(770,80,210,68);
-		fill(255);
-		textSize(16);
-    	textFont("Helvetica");
-    	text("Global warming is a HOAX!",776, 95);
-    	textSize(14);
-    	text("I know it. You know it.", 815,115);
-    	text("Everybody knows it.",815,135);
-	}
-	else{
-		image(trumpAfter,610,50,trumpBefore.width,trumpBefore.height);
-	}
+
+	trumpConditions();
+
 	if(ozoneLayerx > 149 && ozoneLayery > 149){
 		penguinsBeginDeath = true;
 	}
@@ -193,6 +181,7 @@ function penguinScene(){
 			penguinsBeginDeath=false;
 		}
 	}
+
 	fill(242, 99, 166);
 	rect(0,0,width,38);
 	fill(255);
@@ -200,6 +189,11 @@ function penguinScene(){
     textFont("Helvetica");
     text("HOME",815, 28);
 }
+
+
+
+
+
 
 function pandaAndBambooConditions(){
 	//this counts how many bamboos are off the screen
@@ -209,7 +203,6 @@ function pandaAndBambooConditions(){
 			counter += 1;
 		}
 	}
-
 	// if there are more than 15 off the screen
 	if (counter >= 45){
 		pandaDeathBegin = true;
@@ -285,6 +278,37 @@ function rhinoAndPoacherConditions(){
 			}
 }
 
+function trumpConditions(){
+		if(ozoneLayerx < 140 && ozoneLayery < 140){
+		image(trumpBefore,610,50,trumpBefore.width,trumpBefore.height);
+		fill(8, 52, 163);
+		stroke(165, 3, 3);
+		rect(770,80,210,68);
+		triangle(770,120,770,145,760,135);
+		fill(255);
+		noStroke();
+		textSize(16);
+    	textFont("Helvetica");
+    	text("Global warming is a HOAX!",776, 98);
+    	textSize(14);
+    	text("I know it. You know it.", 815,115);
+    	text("Everybody knows it.",815,135);
+    	
+	}
+	else{
+		image(trumpAfter,610,50,trumpBefore.width,trumpBefore.height);
+		fill(8, 52, 163);
+		stroke(165, 3, 3);
+		rect(760,75,180,48);
+		triangle(760,100,760,123,750,115);
+		fill(255);
+		noStroke();
+		textSize(18);
+    	textFont("Helvetica");
+    	text("This was CNN's fault!",763, 95);
+    	text("Fake news",790, 115);
+	}
+}
 function showIgloo(){
 	print("trying");
 	for (var i=0; i < 360; i+=60){
