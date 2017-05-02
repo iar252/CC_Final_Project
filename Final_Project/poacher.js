@@ -8,8 +8,6 @@ function Poacher(xPosPoacher){
 	this.rhinoHead = 460;
 
 
-
-
 	this.xBullet = this.location.x+300;
 	this.yBullet = this.location.y+50; 
 

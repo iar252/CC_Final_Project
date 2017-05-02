@@ -57,7 +57,6 @@ function preload(){
 	trumpBefore = loadImage("media/trumphoax.png");
 	trumpAfter = loadImage("media/trumpmistake.png");
 	rhino_background = loadImage("media/savannah_tree.png");
-	igloo = loadImage("media/igloo.png");
 	fishImg = loadImage("media/fish.png");
 	ivoryImg = loadImage("media/ivory.png");
 	gunShot = loadSound("media/gunShot.mp3");
@@ -69,8 +68,9 @@ function preload(){
 	poacher = loadImage("media/poacher.png");
 
 
-	//these house is a drawing from google, i only colored it in on photoshop
+	//this house and igloor are drawings from google, i only colored it in on photoshop
 	house1 = loadImage("media/house1.png");
+	igloo = loadImage("media/igloo.png");
 
 
 }
@@ -78,7 +78,6 @@ function setup(){
 	createCanvas(1800,700);
 	//array for the x positions available for the rhinos
 	xRhino = [850,1100,1300];
-	//lifespan = millis();
 
 	//array for the x positions available for the pandas
 	xPanda = [15,265,396,524,694,825,959,1184,1384,1593];
@@ -147,9 +146,6 @@ function setup(){
 // 	positions[i] = temp; // finally can use this value because it passed all the tests
 // 	}
 function draw(){
-
-	// print ("this is mouseX " + mouseX);
-	// print("this is mouseY " + mouseY);
 	if (showHome==true){
 		homeAnimals();
 	}	
@@ -165,12 +161,6 @@ function draw(){
 	if (showPenguinScene == true){
 		penguinScene();
 	}
-/*
-	var currentTime = millis();
-	if(currentTime - lifespan > 10000){
-		// then slice from your array
-	}
-	*/
 }
 // state machine working 
 // use of bools because we dont want to pile on images and backgrounds, slows down the program

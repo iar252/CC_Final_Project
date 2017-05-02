@@ -1,7 +1,5 @@
 function Bamboo(){
 	this.location = new createVector(random(20,1700), random(200,700));
-	// this.lifespan = 1000;
-	// this.born = millis(); // time this was born
 	this.velocity = createVector(10,0);
 	this.acceleration = createVector(random(.3,0),0);
 	this.highest = 2;

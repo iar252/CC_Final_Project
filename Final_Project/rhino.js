@@ -1,5 +1,4 @@
 // adding a parameter because I want to make sure the rhinos start off at the same x positions every time
-// also im trying to get the first rhino, arrayOfRhinos[1].whatevermethod to move forward 
 function Rhino(xPosRhino){
 	this.rhinoCaught = false;
 	this.hitRhino = false;
