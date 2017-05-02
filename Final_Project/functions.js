@@ -1,3 +1,5 @@
+var yval = 0.5; 
+
 // these are the functions that are called on the homepage 
 function homePanda(){
 	noStroke();
@@ -100,9 +102,9 @@ function rhinoScene(){
 	for(var i = 0; i < arrayOfRhinos.length; i++){
 		arrayOfRhinos[i].update();
 		arrayOfRhinos[i].display();
-
-	rhinoAndPoacherConditions();
 	}
+	rhinoAndPoacherConditions();
+	
 
 	// the banner that says home
 	fill(242, 99, 166);
@@ -143,25 +145,13 @@ function pandaScene(){
 
 function penguinScene(){
 	background(141, 159, 188);
-	image(igloo, 1300,100,igloo.width, igloo.height);
-
-
-	// Ozone layer expanding
-	stroke(0);
-	if(ozoneLayerx < 150 && ozoneLayery < 150){
-		fill(27, 13, 86);
-	ellipse(1100,100,ozoneLayerx,ozoneLayery);
-	ozoneLayerx+=.3;
-	ozoneLayery+=.3;
-}
-	if(ozoneLayerx >= 150 && ozoneLayery >= 150){
-		fill(27, 13, 86);
-		ellipse(1100,100,150,150);
-	}
-
-	showIgloo();
 	
+	showIgloo(1300,100);
+	showIgloo(200,40);
 
+	ozoneLayerExpanding();
+
+	noStroke();
 	// could NOT put the iceBlock() and display() in the same for loop because then some of the penguins would be 
 	// behind the iceblocks of penguins that had been made before
 	for (var i = 0; i < arrayOfPenguins.length; i++){
@@ -173,14 +163,15 @@ function penguinScene(){
 
 	trumpConditions();
 
-	if(ozoneLayerx > 149 && ozoneLayery > 149){
-		penguinsBeginDeath = true;
-	}
 	for(var i = arrayOfPenguins.length-1; i > 0; i--){
 		if(penguinsBeginDeath==true){
 			arrayOfPenguins.splice(0,1);
 			penguinsBeginDeath=false;
 		}
+	}
+
+	if(arrayOfPenguins.length==1){
+	seaLevelsRising();
 	}
 
 	fill(242, 99, 166);
@@ -190,6 +181,9 @@ function penguinScene(){
     textFont("Helvetica");
     text("HOME",815, 28);
 }
+
+
+
 
 
 
@@ -287,8 +281,25 @@ function rhinoAndPoacherConditions(){
 			}
 }
 
+function ozoneLayerExpanding(){
+	// Ozone layer expanding
+	if(ozoneLayerx < 150 && ozoneLayery < 150){
+		stroke(0);
+		fill(27, 13, 86);
+		ellipse(1100,100,ozoneLayerx,ozoneLayery);
+		ozoneLayerx+=.3;
+		ozoneLayery+=.3;
+	}
+	if(ozoneLayerx >= 150 && ozoneLayery >= 150){
+		stroke(0);
+		fill(27, 13, 86);
+		ellipse(1100,100,150,150);
+	}
+}
+
 function trumpConditions(){
 		if(ozoneLayerx < 140 && ozoneLayery < 140){
+			strokeWeight(4);
 		image(trumpBefore,610,50,trumpBefore.width,trumpBefore.height);
 		fill(8, 52, 163);
 		stroke(165, 3, 3);
@@ -318,18 +329,66 @@ function trumpConditions(){
     	text("Fake news",790, 115);
 	}
 }
-function showIgloo(){
-	print("trying");
-	for (var i=0; i < 360; i+=60){
-		stroke(0);
-		strokeWeight(3);
-		fill(255);
-		stroke(0);
-		rect(200+i,200,90,60);
-		rect(230+i,150,65,50);
-		rect(230+i,120,60,35);
-		arc(410, 120, 350, 150, radians(180), radians(0), CHORD);
-		}
-	noStroke();
+
+function showIgloo(x,y){
+	image(igloo, x,y,igloo.width, igloo.height);
 }
+
+
+/*
+to better understand noise and in order to create more natural waves, i used 
+https://p5js.org/examples/math-noise-wave.html
+
+https://www.youtube.com/watch?v=Qf4dIN99e2w
+Shiffman discussed 2D 
+
+random and noise are different from each other 
+although noise is random, it looks more natural, less rigid
+i used random to create waves for my midterm project
+
+I am using 2D Noise here 
+*/
+
+function seaLevelsRising(){
+  background(150);
+  ozoneLayerExpanding();
+  trumpConditions();
+  fill(255);
+  arc(410, 390, 250, 450, radians(180), radians(0), CHORD);
+  fill(28,107,160);
+  beginShape(); 
+  var xval = 0;      
+  for (var i = 0; i <= width; i += 10) {
+    var y = map(noise(xval, yval), 0, 1, 100,300);
+    // only using 2D grid 
+    //noise(x,y) the x and y are for the x and y coordinates on 2D grid
+    // the last two vaues of map determine how calm or abrupt the movement is
+    // so if the two values are drastically different, then the rising 
+    // of the water will be intense, can be used for a water fountain
+    // if the two values are close to one another, then the water is
+    // more calm 
+    vertex(i, y+80); 
+    // vertex(increments the x, the height)
+    xval += 0.05;
+  }
+  yval += 0.01;
+  vertex(width, height);
+  vertex(0, height);
+  endShape(CLOSE);
+
+  //the fish that appear once the sea levels have risen.
+  for(var i = 0; i < arrayOfFish.length;i++){
+  	arrayOfFish[i].check();
+  	arrayOfFish[i].swim();
+  	arrayOfFish[i].display();
+  }
+
+  	fill(242, 99, 166);
+	rect(0,0,width,38);
+	fill(255);
+	textSize(30);
+    textFont("Helvetica");
+    text("HOME",815, 28);
+}
+
 

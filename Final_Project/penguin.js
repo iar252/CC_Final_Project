@@ -36,31 +36,23 @@ function Penguin(xPosPenguin){
 
 	this.iceBlock = function(){
 		fill(196, 223, 239);
-
-		//quad(this.location.x+30, this.location.y+160, this.location.x+280,this.location.y+160,this.location.x+230,this.location.y+250,this.location.x-50,this.location.y+250);
-
-		// 		ellipse(this.location.x+100, this.location.y+180,190,50);
-
-		// 	//quad(this.location.x+30+i, this.location.y+160, this.location.x+280-i,this.location.y+160,this.location.x+230,this.location.y+250,this.location.x-50+i,this.location.y+250);
-
-		if(ozoneLayerx < 55 && ozoneLayery < 55){
-		quad(this.location.x+20, this.location.y+140, this.location.x+320,this.location.y+140,this.location.x+250,this.location.y+250,this.location.x-90,this.location.y+250);
-			//ellipse(this.location.x+100, this.location.y+180,290,70);
+		if(ozoneLayerx < 35 && ozoneLayery < 35){
+			quad(this.location.x+20, this.location.y+140, this.location.x+320,this.location.y+140,this.location.x+250,this.location.y+250,this.location.x-90,this.location.y+250);
 		}
 
-		else if(ozoneLayerx < 95 && ozoneLayery < 95){
+		else if(ozoneLayerx < 75 && ozoneLayery < 75){
 			ellipse(this.location.x+120, this.location.y+200,310,120);
 		}
 
-		else if(ozoneLayerx < 125 && ozoneLayery < 125){
+		else if(ozoneLayerx < 105 && ozoneLayery < 105){
 			ellipse(this.location.x+120, this.location.y+200,410,40);
 		}
 
 		else if(ozoneLayerx < 140 && ozoneLayery < 140){
 			ellipse(this.location.x+120, this.location.y+200,200,10);
 		}
-		else{
-
+		else if(ozoneLayerx > 149 && ozoneLayery > 149){
+		penguinsBeginDeath = true;
 		}
 	}
 

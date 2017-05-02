@@ -5,6 +5,7 @@
 var rhinoImg;
 var pandaImg;
 var penguinImg;
+var fishImg;
 var trumpBefore;
 var trumpAfter;
 var poacher;
@@ -18,6 +19,7 @@ var arrayOfBamboos =[];
 var arrayOfRhinos = [];
 var arrayOfPenguins = [];
 var arrayOfPoachers = [];
+var arrayOfFish = [];
 var positions = [];
 var lifespan;
 var arrayOfX = [];
@@ -35,6 +37,8 @@ var ozoneLayery = 20;
 var penguinsBeginDeath = false;
 var gunShot;
 var homeSounds;
+var yvalue = 0.0;
+
 
 function preload(){
 	// learned the basics of photoshop to draw my own pictures 
@@ -47,8 +51,10 @@ function preload(){
 	trumpAfter = loadImage("media/trumpmistake.png");
 	rhino_background = loadImage("media/savannah_tree.png");
 	igloo = loadImage("media/igloo.png");
+	fishImg = loadImage("media/fish.png");
 	gunShot = loadSound("media/gunShot.mp3");
 	homeSounds = loadSound("media/backgroundSounds.mp3");
+
 
 	//i did not draw the poacher, only colored him in on photoshop since picture was black and white. 
 	//the artist is Radoslav Penkov 
@@ -92,6 +98,10 @@ function setup(){
 	for(var i = 0; i < 3; i++){
 		arrayOfPoachers[i] = new Poacher(xPoacher[i]);
 	}
+
+	for(var i = 0; i < 30; i++){
+		arrayOfFish[i] = new Fish;
+	}
 }
 // purpose of this code: checks to see if the position was taken
 //because I don't want the pandas to overlap on each other when they're drawn
@@ -116,8 +126,9 @@ function setup(){
 // 	positions[i] = temp; // finally can use this value because it passed all the tests
 // 	}
 function draw(){
-	print ("this is mouseX " + mouseX);
-	print("this is mouseY " + mouseY);
+
+	// print ("this is mouseX " + mouseX);
+	// print("this is mouseY " + mouseY);
 	if (showHome==true){
 		homeAnimals();
 	}	
@@ -139,11 +150,6 @@ function draw(){
 		// then slice from your array
 	}
 	*/
-
-	// tested the code below and it worked!
-	// if(showHome==false){
-	// 	white();
-	// }
 }
 // state machine working 
 // use of bools because we dont want to pile on images and backgrounds, slows down the program
@@ -158,21 +164,21 @@ function mousePressed(){
 		showPandaScene = false;
 	}
 
-	else if(mouseIsPressed && mouseX<535){
+	else if(mouseX<531){
 		showHome=false;
 		showPandaScene = true;
 		showRhinoScene = false;
 		showPenguinScene = false;
 	}
 
-	else if(mouseIsPressed && mouseX>535 && mouseX<1115){
+	else if(mouseX>567 && mouseX<1114){
 		showHome = false;
 		showPandaScene = false;
 		showRhinoScene = false;
 		showPenguinScene = true;
 	}
 
-	else if(mouseIsPressed && mouseX>1150 && mouseX < 1700){
+	else if(mouseX>1158){
 		showHome = false;
 		showPandaScene = false;
 		showRhinoScene = true;
