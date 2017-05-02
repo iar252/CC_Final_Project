@@ -22,7 +22,7 @@ function Penguin(xPosPenguin){
 		}
 		else{
 			image(penguinImg,this.location.x+45,this.location.y, penguinImg.width-40, 6*penguinImg.height/5);
-						fill(0);
+			fill(0);
 			ellipse(this.location.x+100, this.location.y+60, 16,18);
 			ellipse(this.location.x+123, this.location.y+50, 16,18);
 			fill(183, 179, 179);
@@ -30,8 +30,6 @@ function Penguin(xPosPenguin){
 			ellipse(this.location.x+124, this.location.y+50, 5,8);
 		
 		}
-		
-
 	}
 
 	this.iceBlock = function(){

@@ -21,7 +21,6 @@ function Fish(){
 
 	this.check = function(){
 		if(this.location.x < 10){
-			
 			this.location.x = 1600;
 		}
 	}

@@ -104,7 +104,7 @@ function rhinoScene(){
 		arrayOfRhinos[i].display();
 	}
 	rhinoAndPoacherConditions();
-	
+	sellingIvory();
 
 	// the banner that says home
 	fill(242, 99, 166);
@@ -119,6 +119,13 @@ function rhinoScene(){
 function pandaScene(){
 	//this scene shows how when bamboos lose their homes due to deforestation, they begin to lose weight and then die 
 	background(bamboo_background);
+
+	deforestation(600,300,2);
+	deforestation(300,100,4);
+	deforestation(1100,300,2);
+	deforestation(0,400,1);
+	deforestation(650,50,6);
+	deforestation(900,70,4);
 
 	//the function that holds all the conditions and controls for when things happen
 	pandaAndBambooConditions();
@@ -186,11 +193,7 @@ function penguinScene(){
 
 
 
-
-
-
-
-
+// all the conditions for the functions that call any of the three different scenes
 function pandaAndBambooConditions(){
 	//this counts how many bamboos are off the screen
 	var counter=0;
@@ -211,7 +214,7 @@ function pandaAndBambooConditions(){
 		}
 	}
 	// if there are more 5 but less than 10, then theyre surprised
-	if(counter > 25 && counter < 40){
+	if(counter > 25 && counter < 35){
 		for(var i = 0; i < arrayOfPandas.length; i++){
 			arrayOfPandas[i].isLosingWeight = true;
 		}
@@ -224,6 +227,12 @@ function pandaAndBambooConditions(){
 			pandaDeathBegin = false;
 		}
 	}
+}
+
+function deforestation(x,y,div){
+	if(arrayOfPandas.length==1){
+	image(house1,x,y,house1.width/div, house1.height/div);
+}
 }
 
 function rhinoAndPoacherConditions(){
@@ -256,29 +265,25 @@ function rhinoAndPoacherConditions(){
 			arrayOfPoachers[i].update();
 			arrayOfPoachers[i].moving();
 			arrayOfRhinos[i].rhinoCaught = true;
-			// checks for which range theyll start shooting again
-			if (arrayOfPoachers[i].location.x >= 380) {
-				arrayOfPoachers[i].poacherShoots = true;
-				arrayOfPoachers[i].xBullet = arrayOfPoachers[i].location.x+500;
-				arrayOfPoachers[i].rhinoHead = 1200;
-				arrayOfPoachers[i].bullet();
-				if(arrayOfPoachers[1].xBullet>1200 && arrayOfPoachers[2].xBullet>1200){
-					//flips this boolean because its checking in the next round of bullets has hit them
-					rhinosAllDie = true;
-					fill(86, 1, 1);
-					ellipse(1400,600,600,70);
-					gunShot.setVolume(3);
-					gunShot.play();
-				}
-			}
 		}
 	}
-			if (rhinosAllDie==true){
-				for(var i = 1; i < arrayOfRhinos.length; i++){
-					// spliced the rhinos off the array instead of just not displaying them like the first rhino
-					arrayOfRhinos.splice(i,2);
-				}
-			}
+}
+
+function sellingIvory(){
+	// if the poachers pass a certain point then the ivorys come down
+	if(arrayOfPoachers[0].location.x>700){
+	background(193, 181, 160);
+	// the table
+	stroke(0);
+	fill(56, 48, 35);
+	rect(500,200,900,450);
+	for(var i = 0; i < arrayOfIvory.length; i++){
+		arrayOfIvory[i].check();
+		arrayOfIvory[i].comingDown();
+		arrayOfIvory[i].display();
+		}
+	}
+	noStroke();
 }
 
 function ozoneLayerExpanding(){
@@ -334,8 +339,12 @@ function showIgloo(x,y){
 	image(igloo, x,y,igloo.width, igloo.height);
 }
 
+function seaLevelsRising(){
+  background(150);
+  ozoneLayerExpanding();
+  trumpConditions();
 
-/*
+  /*
 to better understand noise and in order to create more natural waves, i used 
 https://p5js.org/examples/math-noise-wave.html
 
@@ -349,10 +358,6 @@ i used random to create waves for my midterm project
 I am using 2D Noise here 
 */
 
-function seaLevelsRising(){
-  background(150);
-  ozoneLayerExpanding();
-  trumpConditions();
   fill(255);
   arc(410, 390, 250, 450, radians(180), radians(0), CHORD);
   fill(28,107,160);

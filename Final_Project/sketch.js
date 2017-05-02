@@ -6,6 +6,7 @@ var rhinoImg;
 var pandaImg;
 var penguinImg;
 var fishImg;
+var ivoryImg;
 var trumpBefore;
 var trumpAfter;
 var poacher;
@@ -20,24 +21,30 @@ var arrayOfRhinos = [];
 var arrayOfPenguins = [];
 var arrayOfPoachers = [];
 var arrayOfFish = [];
+var arrayOfIvory = [];
 var positions = [];
 var lifespan;
 var arrayOfX = [];
-var pandaDeathBegin = false;
 var xRhino = [];
 var xPanda = [];
-var rhino_background;
-var igloo;
 var xPenguin = [];
 var xPoacher = [];
+var xIvory = [];
+var rhino_background;
+var igloo;
 var time;
-var rhinosAllDie =false;
 var ozoneLayerx = 20;
 var ozoneLayery = 20;
 var penguinsBeginDeath = false;
+var pandaDeathBegin = false;
 var gunShot;
 var homeSounds;
 var yvalue = 0.0;
+var house1;
+
+
+
+
 
 
 function preload(){
@@ -52,6 +59,7 @@ function preload(){
 	rhino_background = loadImage("media/savannah_tree.png");
 	igloo = loadImage("media/igloo.png");
 	fishImg = loadImage("media/fish.png");
+	ivoryImg = loadImage("media/ivory.png");
 	gunShot = loadSound("media/gunShot.mp3");
 	homeSounds = loadSound("media/backgroundSounds.mp3");
 
@@ -59,6 +67,12 @@ function preload(){
 	//i did not draw the poacher, only colored him in on photoshop since picture was black and white. 
 	//the artist is Radoslav Penkov 
 	poacher = loadImage("media/poacher.png");
+
+
+	//these house is a drawing from google, i only colored it in on photoshop
+	house1 = loadImage("media/house1.png");
+
+
 }
 function setup(){
 	createCanvas(1800,700);
@@ -74,6 +88,9 @@ function setup(){
 
 	//array for the x positions available for the poachers
 	xPoacher = [-40, -90,-130];
+
+	//array for the x positions available for the ivory
+	xIvory = [500,580,710,820,910,1010,1100,1208,1250];
 
 	// putting pandas in the array
 	for(var i = 0; i < 11; i++){
@@ -101,6 +118,10 @@ function setup(){
 
 	for(var i = 0; i < 30; i++){
 		arrayOfFish[i] = new Fish;
+	}
+
+	for(var i = 0; i < 9; i++){
+		arrayOfIvory[i] = new Ivory(xIvory[i]);
 	}
 }
 // purpose of this code: checks to see if the position was taken
