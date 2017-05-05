@@ -41,8 +41,11 @@ var gunShot;
 var homeSounds;
 var yvalue = 0.0;
 var house1;
-
-
+var startHomesAppearing;
+var waterLevel = -700;
+var risingWithWater = 0;
+var ivoryTime;
+var setTimeAlready = false;
 
 
 
@@ -89,7 +92,7 @@ function setup(){
 	xPoacher = [-40, -90,-130];
 
 	//array for the x positions available for the ivory
-	xIvory = [500,580,710,820,910,1010,1100,1208,1250];
+	xIvory = [500,630,800,1000,1100,1250];
 
 	// putting pandas in the array
 	for(var i = 0; i < 11; i++){
@@ -119,7 +122,7 @@ function setup(){
 		arrayOfFish[i] = new Fish;
 	}
 
-	for(var i = 0; i < 9; i++){
+	for(var i = 0; i < 6; i++){
 		arrayOfIvory[i] = new Ivory(xIvory[i]);
 	}
 }

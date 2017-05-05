@@ -1,6 +1,7 @@
 function Penguin(xPosPenguin){
 	this.location = new createVector(xPosPenguin,random(150,500));
 	this.display = function(){
+		// healthy penguin
 		if(ozoneLayerx < 125 && ozoneLayery < 125){
 			image(penguinImg,this.location.x,this.location.y, 6*penguinImg.width/5, 6*penguinImg.height/5);
 			fill(0);
@@ -14,6 +15,7 @@ function Penguin(xPosPenguin){
 			ellipse(this.location.x+92, this.location.y+62, 5,5);
 			ellipse(this.location.x+115, this.location.y+56, 5,5);
 		}
+		// skinny penguin, lost weight 
 		else{
 			image(penguinImg,this.location.x+45,this.location.y, penguinImg.width-40, 6*penguinImg.height/5);
 			fill(0);
@@ -28,6 +30,7 @@ function Penguin(xPosPenguin){
 
 	this.iceBlock = function(){
 		fill(196, 223, 239);
+		// the if statements, where the ice melts as the ozone layer gets bigger and bigger
 		if(ozoneLayerx < 35 && ozoneLayery < 35){
 			quad(this.location.x+20, this.location.y+140, this.location.x+320,this.location.y+140,this.location.x+250,this.location.y+250,this.location.x-90,this.location.y+250);
 		}

@@ -121,11 +121,18 @@ function pandaScene(){
 	background(bamboo_background);
 
 	deforestation(600,300,2);
-	deforestation(300,100,4);
-	deforestation(1100,300,2);
-	deforestation(0,400,1);
-	deforestation(650,50,6);
-	deforestation(900,70,4);
+	
+	// below, checking the times when the next home should appear
+	if (millis() - startHomesAppearing > 3000)
+		deforestation(300,100,4);
+	if(millis() - startHomesAppearing  > 5000)
+		deforestation(1100,300,2);
+	if(millis() - startHomesAppearing > 7000)
+		deforestation(0,400,1);
+	if(millis() -startHomesAppearing > 9000)
+		deforestation(650,50,6);
+	if(millis() - startHomesAppearing > 11000)
+		deforestation(900,70,4);
 
 	//the function that holds all the conditions and controls for when things happen
 	pandaAndBambooConditions();
@@ -225,6 +232,7 @@ function pandaAndBambooConditions(){
 		if(pandaDeathBegin == true){
 			arrayOfPandas.splice(0, 1);
 			pandaDeathBegin = false;
+			startHomesAppearing = millis();
 		}
 	}
 }
@@ -267,21 +275,56 @@ function rhinoAndPoacherConditions(){
 			arrayOfRhinos[i].rhinoCaught = true;
 		}
 	}
+
 }
 
 function sellingIvory(){
+	// checks to see if the time already had a stamp, otherwise itll happen 60 times a minute and the functions will
+	// never be called
+	if(setTimeAlready == false){
+		ivoryTime = millis();
+		setTimeAlready = true;
+	}
+	console.log(millis()-ivoryTime);
 	// if the poachers pass a certain point then the ivorys come down
 	if(arrayOfPoachers[0].location.x>700){
-	background(193, 181, 160);
-	// the table
-	stroke(0);
-	fill(56, 48, 35);
-	rect(500,200,900,450);
-	for(var i = 0; i < arrayOfIvory.length; i++){
-		arrayOfIvory[i].check();
-		arrayOfIvory[i].comingDown();
-		arrayOfIvory[i].display();
+		background(193, 181, 160);
+		// the table
+		stroke(0);
+		fill(56, 48, 35);
+		rect(500,200,900,450);
+		
+		// the ivories fall down one by one
+		if(millis() - ivoryTime > 18000){
+			arrayOfIvory[0].check();
+			arrayOfIvory[0].comingDown();
+			arrayOfIvory[0].display();
 		}
+		if(millis() - ivoryTime > 20000){
+			arrayOfIvory[1].check();
+			arrayOfIvory[1].comingDown();
+			arrayOfIvory[1].display();
+		}
+		if(millis() - ivoryTime > 22000){
+			arrayOfIvory[2].check();
+			arrayOfIvory[2].comingDown();
+			arrayOfIvory[2].display();
+		}
+		if(millis() - ivoryTime > 24000){
+			arrayOfIvory[3].check();
+			arrayOfIvory[3].comingDown();
+			arrayOfIvory[3].display();
+		}
+		if(millis() - ivoryTime > 26000){
+			arrayOfIvory[4].check();
+			arrayOfIvory[4].comingDown();
+			arrayOfIvory[4].display();
+		}
+		if(millis() - ivoryTime > 28000){
+			arrayOfIvory[5].check();
+			arrayOfIvory[5].comingDown();
+			arrayOfIvory[5].display();
+		}		
 	}
 	noStroke();
 }
@@ -359,7 +402,7 @@ I am using 2D Noise here
 */
 
   fill(255);
-  arc(410, 390, 250, 450, radians(180), radians(0), CHORD);
+  arc(410, 950-risingWithWater, 250, 450, radians(180), radians(0), CHORD);
   fill(28,107,160);
   beginShape(); 
   var xval = 0;      
@@ -372,7 +415,8 @@ I am using 2D Noise here
     // of the water will be intense, can be used for a water fountain
     // if the two values are close to one another, then the water is
     // more calm 
-    vertex(i, y+80); 
+    // waterLevel is used so that as it increases, the water level rises
+    vertex(i, y-waterLevel); 
     // vertex(increments the x, the height)
     xval += 0.05;
   }
@@ -381,12 +425,22 @@ I am using 2D Noise here
   vertex(0, height);
   endShape(CLOSE);
 
-  //the fish that appear once the sea levels have risen.
+  // checks for when the waterLevel variable should be incremented
+  if (waterLevel<-50) {
+	risingWithWater += 1;
+  	waterLevel += 1;
+  }
+  else {
+	waterLevel += 0;
+	  //the fish that appear once the sea levels have risen.
   for(var i = 0; i < arrayOfFish.length;i++){
   	arrayOfFish[i].check();
   	arrayOfFish[i].swim();
   	arrayOfFish[i].display();
   }
+  // this variable is for the iceberg to start sinking
+  	risingWithWater -= .5;
+}
 
   	fill(242, 99, 166);
 	rect(0,0,width,38);

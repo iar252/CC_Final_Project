@@ -1,8 +1,8 @@
 function Ivory(xPosIvory){
 	this.location = new createVector(xPosIvory,-500);
 	this.velocity = createVector(10,0);
-	this.acceleration = createVector(0,.3);
-	this.highest = .5;
+	this.acceleration = createVector(0,5);
+	this.highest = 2;
 
 
 	this.display = function(){

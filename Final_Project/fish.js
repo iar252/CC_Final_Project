@@ -4,12 +4,14 @@ function Fish(){
 	this.acceleration = createVector(random(-.3,0),0);
 	this.highest =1;
 
+
 	this.display = function(){
 		image(fishImg,this.location.x,random(this.location.y,this.location.y+5),fishImg.width,fishImg.height);
 		fill(255);
 		ellipse(this.location.x+43,random(this.location.y,this.location.y+5)+45,20,15);
 		fill(0);
 		ellipse(this.location.x+41,random(this.location.y,this.location.y+5)+45,10,10);
+
 	}
 
 	this.swim = function(){
