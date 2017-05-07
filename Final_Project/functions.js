@@ -109,10 +109,13 @@ function rhinoScene(){
 	// the banner that says home
 	fill(242, 99, 166);
 	rect(0,0,width,38);
+	strokeWeight(2);
+	stroke(random(255));
 	fill(255);
 	textSize(30);
      textFont("Helvetica");
      text("HOME",815, 28);
+     noStroke();
 }
 
 
@@ -150,10 +153,13 @@ function pandaScene(){
 	
 	fill(242, 99, 166);
 	rect(0,0,width,38);
+	strokeWeight(2);
+	stroke(random(255));
 	fill(255);
 	textSize(30);
     textFont("Helvetica");
     text("HOME",815, 28);
+    noStroke();
 }
 
 
@@ -190,10 +196,13 @@ function penguinScene(){
 
 	fill(242, 99, 166);
 	rect(0,0,width,38);
+	strokeWeight(2);
+	stroke(random(255));
 	fill(255);
 	textSize(30);
     textFont("Helvetica");
     text("HOME",815, 28);
+    noStroke();
 }
 
 
@@ -444,10 +453,13 @@ I am using 2D Noise here
 
   	fill(242, 99, 166);
 	rect(0,0,width,38);
+	strokeWeight(2);
+	stroke(random(255));
 	fill(255);
 	textSize(30);
     textFont("Helvetica");
     text("HOME",815, 28);
+    noStroke();
 }
 
 
